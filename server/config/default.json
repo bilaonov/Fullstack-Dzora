@@ -1,0 +1,6 @@
+{
+  
+  "port": 5000,
+  "jwtSecret": "amiran_dzora",
+  "mongoUri": "mongodb+srv://amiran:12344321@cluster0.3unrk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}

@@ -1,63 +1,118 @@
+export const mongoose = require('mongoose')
+const config = require('config')
 const {ApolloServer, gql} = require('apollo-server-express')
-import express from 'express'
+const express = require('express');
+export const models = require('./models')
+
 
 const app = express()
-const port = 5000
+const PORT = config.get('port') || 5000
 
 const typeDefs = gql`
     type Query {
         words: [Word!]!
+        word(word: String!): Word!
     }
 
     type Word {
-        id: ID
+        id: Int!
         word: String
         translates: [Translates]
     }
 
     type Translates {
-        id: ID
+        id: Int!
         word: String
         language: String
-        word_id: Int
+    }
+
+    type Mutation {
+        addDigWord(word: String!): Word!
+        addRusWord(word: String!): Translates!
     }
 `;
 
 const resolvers = {
     Query: {
-        words: () => words
+        words: () => words,
+        word: (parent: any, context: any) => {
+            return words.find(word => word.word === context.word);
+        }
     },
     Word: {
         translates: (word: any) => {
             return translate.filter((translates) => translates.id === word.id)
         }
+    },
+    Mutation: {
+        addDigWord: (parent: any, context: any) => {
+            let wordDigValue = {
+                id: Number(words.length + 1),
+                word: context.word,
+            }
+            words.push(wordDigValue)
+            return wordDigValue
+        },
+        addRusWord: (parent: any, context: any) => {
+            let wordRusValue = {
+                id: Number(translate.length + 1),
+                word: context.word,
+                language: 'rus'
+            }
+            translate.push(wordRusValue)
+            return wordRusValue
+        }
     }
+    
 
 }
 
-let words = [{
-    id: '1',
-    word: 'Хуцау'
-}]
+let words = [
+    {
+        id: 1,
+        word: 'хуцау'
+    },
+    {
+        id: 2,
+        word: 'салам'
+    }
+]
 
-let translate = [{
-    id: '1',
-    word: 'Аллах',
-    language: 'rus',
-    word_id: 1
-}]
+let translate = [
+    {
+        id: 1,
+        word: 'бог',
+        language: 'rus'
+    },
+    {
+        id: 2,
+        word: 'привет',
+        language: 'rus'
+    }
+]
 
 
-const server = new ApolloServer({typeDefs, resolvers})
+const server = new ApolloServer({
+    typeDefs, 
+    resolvers
+})
 
 server.applyMiddleware({app, path: '/api'})
 
 
-app.get('/', (request, response) => {
-    response.send("hello world")
-})
 
-app.listen({ port }, () =>
-    console.log(`GraphQL Server running at http://localhost:${port}${server.graphqlPath}`
-)
-);
+async function start() {
+    try {
+        await mongoose.connect(config.get('mongoUri'),{
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+
+        })
+        app.listen(PORT, () => console.log(`App has bin server started on port ${PORT}...`))
+    } catch (e) {
+        console.log('Server Error', e.message)
+        process.exit(1)
+    }
+}
+
+start()
