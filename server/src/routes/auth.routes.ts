@@ -1,6 +1,8 @@
+const config = require('config')
 const Router = require('express').Router()
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const jwt = require("jsonwebtoken")
 const {check, validationResult} = require('express-validator')
 
 Router.post('/registration', 
@@ -22,11 +24,38 @@ Router.post('/registration',
         if(condidate) {
             return res.status(400).json({message: `Пользователь с таким ${email} уже существует `})
         }
-        const hashPassword = await bcrypt.hash(password, 15)
+        const hashPassword = await bcrypt.hash(password, 8)
 
         const user = new User({email, password: hashPassword})
         await user.save()
         return res.json({message: 'Пользователь успешно зарегистрирован '})
+    } catch (e) {
+        console.log(e)
+        res.send({message: 'Server error'})
+    }
+})
+
+
+Router.post('/login', async (req: any, res: any) => {
+    try {
+        const{email, password} = req.body
+        const user = await User.findOne({email})
+        if(!user) {
+            return res.status(404).json({message: "Указанный пользователь не существует"})
+        }
+        const isPassValid = bcrypt.compareSync(password, user.password)
+        if (!isPassValid) {
+            return res.status(400).json({message:"Неправильный пароль, попробуйте еще раз"})
+        }
+        const token = jwt.sign({id:user.id}, config.get('jwtSecret'), {expiresIn: '1h'})
+        return res.json({
+            token,
+            user:{
+                id: user.id,
+                email:user.email,
+                avatar: user.avatar
+            }
+        })
     } catch (e) {
         console.log(e)
         res.send({message: 'Server error'})
