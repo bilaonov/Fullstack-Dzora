@@ -14,7 +14,7 @@ Router.post('/registration',
         console.log(req.body)
         const error = validationResult(req) 
         if (!error.isEmpty()) {
-            return  res.status(400).json({message: 'Ошибка регистрации, повторите еще раз', error})
+            return  res.status(400).json({message: 'Ошибка регистрации, пожалуйста повторите еще раз', error})
         }
         const {email, password} = req.body
         const  condidate = await User.findOne({email})
