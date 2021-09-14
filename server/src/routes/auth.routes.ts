@@ -41,7 +41,7 @@ Router.post('/login', async (req: any, res: any) => {
         const{email, password} = req.body
         const user = await User.findOne({email})
         if(!user) {
-            return res.status(404).json({message: "Указанный пользователь не существует"})
+            return res.status(404).json({message: "Указанный логин не существует"})
         }
         const isPassValid = bcrypt.compareSync(password, user.password)
         if (!isPassValid) {
