@@ -4,4 +4,4 @@
 Создается онлайн приложение с переводом слов с Осетинского на Русский, с добавлением слов через авторизацию.
 
 Стек технологий:
-Typescript + React + GraphQL + Apollo
+Typescript + UI:React(redux) + back:Node(Express) 
