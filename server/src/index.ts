@@ -1,8 +1,8 @@
-export const mongoose = require('mongoose')
-const config = require('config')
-const express = require('express');
-const authRouter = require('./routes/auth.routes')
-
+import mongoose from 'mongoose';
+import config from 'config';
+import express from 'express';
+import authRouter from './routes/auth.routes';
+import wordRouter from './routes/word.routes'
 
 const app = express()
 const PORT = config.get('port') || 5000
@@ -10,6 +10,7 @@ const PORT = config.get('port') || 5000
 
 app.use(express.json())
 app.use('/api/auth/', authRouter)
+app.use('/api/', wordRouter)
 
 
 
