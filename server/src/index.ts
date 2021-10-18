@@ -17,8 +17,6 @@ app.use('/api/', wordRouter)
 async function start() {
     try {
         await mongoose.connect(config.get('mongoUri'),{
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
 
         })
         app.listen(PORT, () => console.log(`App has bin server started on port ${PORT}...`))

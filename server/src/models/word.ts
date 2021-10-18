@@ -6,4 +6,6 @@ const wordSchema = new Schema ({
     rus_word: {type: String, required: true, unique: true, lowercase: true},
 })
 
+
+
 export default model<IWord>('Word', wordSchema)
