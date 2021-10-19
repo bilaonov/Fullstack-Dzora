@@ -2,14 +2,21 @@ import {
     SetWordsActionInterface, 
     WordsActionsType,
     FetchWordsActionInteface,
-    SetWordsLoadingStateActionInteface
+    SetWordsLoadingStateActionInteface,
+    AddWordsActionInterface
 } from "./types/actionTypes";
 
-import { LoadingState, WordsState } from "./types/state";
+import { IWords, LoadingState, WordsState } from "./types/state";
 
 export const setWords = (payload: WordsState['items']): SetWordsActionInterface => ({
     type: WordsActionsType.SET_WORDS,
     payload
+})
+
+export const addWords = (payload: {rus_word: string, dig_word:string}): AddWordsActionInterface => ({
+    type: WordsActionsType.ADD_WORDS,
+    payload
+
 })
 
 export const fetchWords = (): FetchWordsActionInteface => ({
@@ -23,6 +30,7 @@ export const setWordsLoadingStatw = (payload: LoadingState): SetWordsLoadingStat
 
 
 export type WordsActions = 
+    | AddWordsActionInterface
     | FetchWordsActionInteface
     | SetWordsLoadingStateActionInteface
     | SetWordsActionInterface

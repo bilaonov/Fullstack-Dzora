@@ -9,12 +9,22 @@ const logger = createLogger({
   // ...options
 });
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
+const composeEnhancers =
+  (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
+
 const sagaMiddleware = createSagaMiddleware()
 
 export interface RootState {
     words: WordsState
 }
 
-export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware, logger))
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware, logger)))
 
 sagaMiddleware.run(rootSaga)

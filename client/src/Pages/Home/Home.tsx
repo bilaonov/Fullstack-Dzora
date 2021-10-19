@@ -1,21 +1,27 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import '../../App.scss'
-import { selectWords } from '../../store/structure/words/selectors'
+import { Header } from '../../components/Header/Header'
+
+
+
+import { fetchWords, } from '../../store/structure/words/actionCreators'
+
 
 const Home: React.FC = () => {
-    const { wordsData}:any = useSelector(selectWords)
+
+    
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        dispatch(fetchWords());
+      }, [dispatch]);
     
 
-    useEffect(() => {
-        
-    }, [wordsData])
-
-    console.log(wordsData)    
     return (
         <div className='container'>
-            Home
-
+            <Header/>
+            
         </div>
     )
 }

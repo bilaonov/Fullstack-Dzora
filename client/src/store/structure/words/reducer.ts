@@ -22,5 +22,10 @@ export const wordsReducer = produce((draft: Draft<WordsState>, action: WordsActi
         case WordsActionsType.SET_LOADING_STATE:
             draft.loadingState = action.payload
             break
+        case WordsActionsType.ADD_WORDS:
+            draft.loadingState = LoadingState.LOADED
+            break 
+        default: 
+            break
     }
 }, initialWordsState)
