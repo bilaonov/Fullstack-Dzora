@@ -18,7 +18,7 @@ export interface FetchWordsActionInteface extends Action<WordsActionsType> {
 }
 
 export interface AddWordsActionInterface extends Action<WordsActionsType> {
-    type: WordsActionsType.ADD_WORDS
+    type: WordsActionsType.ADD_WORDS;
     payload: {
         rus_word: string
         dig_word: string

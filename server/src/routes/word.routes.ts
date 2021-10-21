@@ -13,16 +13,19 @@ router.post('/words', async (req:Request, res: Response): Promise<void> => {
 
         if(uniqDigWord) {
             res.status(400).json({message: `Извините но слово ${dig_word} уже существует в нашей базе `})
+            return
         }
         if(uniqRusWord) {
             res.status(400).json({message: `Извините но слово ${rus_word} уже существует в нашей базе `})
+            return
         }
         const word: IWord = new Word({dig_word, rus_word})
         await word.save()
             res.json({message: 'Слова успешно добавлены спасибо'})
+            return
     } catch (e) {
-        console.log(e)
         res.send({message: 'Server error'})
+        return
     }
 })
 
@@ -91,9 +94,5 @@ router.delete('/word/:id', async (req:Request, res: Response): Promise<void> => 
         res.send({message: 'Server error'})
     }
 })
-
-
-
-
 
 export default router

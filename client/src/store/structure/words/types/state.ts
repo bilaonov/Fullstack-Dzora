@@ -7,7 +7,7 @@ export enum LoadingState {
 
 export interface IWords {
     _id: string
-    dig_word: string,
+    dig_word: string
     rus_word: string
 }
 

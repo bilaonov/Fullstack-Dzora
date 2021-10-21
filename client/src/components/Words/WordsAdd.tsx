@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { addWords } from '../../store/structure/words/actionCreators';
+import { useDispatch } from 'react-redux';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -23,13 +25,35 @@ const style = {
 
 const WordsAdd = () => {
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [dig_word, setDigWord] = useState<string>('');
+    const [rus_word, setRusWord] = useState<string>('');
+    const [error, setError] = useState('')
+
+    const dispatch = useDispatch()
+    
+
     const handleOpen = () => {
       setOpen(true);
     };
     const handleClose = () => {
       setOpen(false);
     };
+
+
+
+    const submitAddWord = (e: any) => {
+        e.preventDefault()
+        if (!dig_word || !rus_word) {
+            setError('Пожалуйста заполните все поля')
+        } else {
+            dispatch(addWords({rus_word, dig_word}))
+            setDigWord('')
+            setRusWord('')
+            setOpen(false)
+        }
+        
+    }
 
     return (
         <div>
@@ -45,40 +69,45 @@ const WordsAdd = () => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                
             >
-                <Box 
+                <Box
                 sx={style}
                 component="form"
+                onSubmit={submitAddWord}
                 >
-                    <TextField
-                    fullWidth
-                    id="standard-textarea"
-                    label="Добавить слово на дигорском"
-                    placeholder="Введите слово на дигорском"
-                    
-                    variant="standard"
-                    />
-                    <TextField
-                    fullWidth
-                    id="standard-textarea"
-                    label="Добавить слово на русском"
-                    placeholder="Введите слово на русском"
-                    
-                    variant="standard"
-                    />
-                    <Button 
-                    sx={{mt: 3, mr: 2}}
-                    variant="outlined"
-                    onClick={handleClose}
-                    >
-                        Отменить
-                    </Button>
-                    <Button 
-                    sx={{mt: 3}}
-                    variant="contained" 
-                    color="success">
-                        Добавить
-                    </Button>
+                        <TextField
+                        fullWidth
+                        value={dig_word}
+                        id="standard-textarea"
+                        label="Добавить слово на дигорском"
+                        placeholder="Введите слово на дигорском"
+                        onChange={(e) => setDigWord(e.target.value)}
+                        variant="standard"
+                        />
+                        <TextField
+                        onChange={(e) => setRusWord(e.target.value)}
+                        fullWidth
+                        value={rus_word}
+                        id="standard-textarea"
+                        label="Добавить слово на русском"
+                        placeholder="Введите слово на русском"
+                        variant="standard"
+                        />
+                        <Button 
+                        sx={{mt: 3, mr: 2}}
+                        variant="outlined"
+                        onClick={handleClose}
+                        >
+                            Отменить
+                        </Button>
+                        <Button 
+                        type='submit'
+                        sx={{mt: 3}}
+                        variant="contained" 
+                        color="success">
+                            Добавить
+                        </Button> 
                 </Box>
             </Modal>
         </div>

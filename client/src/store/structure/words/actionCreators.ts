@@ -13,7 +13,10 @@ export const setWords = (payload: WordsState['items']): SetWordsActionInterface 
     payload
 })
 
-export const addWords = (payload: {rus_word: string, dig_word:string}): AddWordsActionInterface => ({
+export const addWords = (payload: {
+    rus_word: string, 
+    dig_word: string
+}): AddWordsActionInterface => ({
     type: WordsActionsType.ADD_WORDS,
     payload
 

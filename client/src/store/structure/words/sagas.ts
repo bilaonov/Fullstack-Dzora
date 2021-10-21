@@ -7,8 +7,8 @@ import { LoadingState } from './types/state'
 
 export function* fetchWordsRequest():any {
     try {
+        
         const items = yield call(wordsApi.fetchWords)
-
         yield put(setWords(items))
         
     }catch(e) {
@@ -16,10 +16,13 @@ export function* fetchWordsRequest():any {
     }
 }
 
-export function* addWordsRequest({payload}: AddWordsActionInterface) {
+export function* addWordsRequest({payload}: AddWordsActionInterface ):any {
     try {
-        const item = yield call(wordsApi.addWord, payload)
+        
+        const item = yield call(wordsApi.addWords, payload)
+        
         yield put(addWords(item))
+        
     }catch(e) {
         console.log(e)
     }
@@ -27,6 +30,7 @@ export function* addWordsRequest({payload}: AddWordsActionInterface) {
 
 export function* wordsSaga() {
     yield takeLatest(WordsActionsType.FETCH_WORDS, fetchWordsRequest)
+    yield takeLatest(WordsActionsType.ADD_WORDS, addWordsRequest)
 }
 
 

@@ -10,13 +10,7 @@ import { fetchWords, } from '../../store/structure/words/actionCreators'
 
 const Home: React.FC = () => {
 
-    
-    const dispatch = useDispatch();
 
-    React.useEffect(() => {
-        dispatch(fetchWords());
-      }, [dispatch]);
-    
 
     return (
         <div className='container'>
