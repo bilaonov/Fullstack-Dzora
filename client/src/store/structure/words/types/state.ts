@@ -2,7 +2,7 @@ export enum LoadingState {
     LOADED = 'LOADED',
     LOADING = 'LOADING',
     ERROR = 'ERROR',
-    NEVER = 'NEVER'
+    NEVER = 'NEVER',
 }
 
 export interface IWords {

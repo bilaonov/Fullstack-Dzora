@@ -1,40 +1,48 @@
-import { 
-    SetWordsActionInterface, 
+import {
+    SetWordsActionInterface,
     WordsActionsType,
     FetchWordsActionInteface,
     SetWordsLoadingStateActionInteface,
-    AddWordsActionInterface
-} from "./types/actionTypes";
+    DeleteWordsActionInterface,
+    AddWordsActionInterface,
+} from './types/actionTypes'
 
-import { IWords, LoadingState, WordsState } from "./types/state";
+import { LoadingState, WordsState } from './types/state'
 
-export const setWords = (payload: WordsState['items']): SetWordsActionInterface => ({
+export const setWords = (
+    payload: WordsState['items']
+): SetWordsActionInterface => ({
     type: WordsActionsType.SET_WORDS,
-    payload
+    payload,
 })
 
 export const addWords = (payload: {
-    rus_word: string, 
+    rus_word: string
     dig_word: string
 }): AddWordsActionInterface => ({
     type: WordsActionsType.ADD_WORDS,
-    payload
-
+    payload,
 })
 
 export const fetchWords = (): FetchWordsActionInteface => ({
     type: WordsActionsType.FETCH_WORDS,
 })
 
-export const setWordsLoadingStatw = (payload: LoadingState): SetWordsLoadingStateActionInteface => ({
+export const setWordsLoadingStatw = (
+    payload: LoadingState
+): SetWordsLoadingStateActionInteface => ({
     type: WordsActionsType.SET_LOADING_STATE,
-    payload
+    payload,
 })
 
+export const deleteWords = (id: string): DeleteWordsActionInterface => ({
+    type: WordsActionsType.DELETE_WORDS,
+    id,
+})
 
-export type WordsActions = 
+export type WordsActions =
     | AddWordsActionInterface
     | FetchWordsActionInteface
     | SetWordsLoadingStateActionInteface
     | SetWordsActionInterface
-
+    | DeleteWordsActionInterface
