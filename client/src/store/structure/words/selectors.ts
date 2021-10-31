@@ -6,6 +6,5 @@ export const selectWords = (state: RootState): WordsState => state.words
 
 export const selectWordsItems = createSelector(
     selectWords,
-
     (words) => words.items
 )

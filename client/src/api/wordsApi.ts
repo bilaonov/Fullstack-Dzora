@@ -6,6 +6,7 @@ interface Response<T> {
 }
 
 const url = 'http://localhost:5000/api/words/'
+const url2 = 'http://localhost:5000/api/words/search/'
 
 export const wordsApi = {
     async fetchWords(): Promise<Response<WordsState['items']>> {
@@ -17,12 +18,16 @@ export const wordsApi = {
         dig_word: string
     }): Promise<IWords[]> {
         const { data } = await axios.post<Response<IWords[]>>(url, payload)
-
+        return data.data
+    },
+    async searchWords(searchString: string): Promise<WordsState['items']> {
+        const data  = await axios.get<Response<WordsState['items']>>(url2 + searchString)
+        //@ts-ignore
         return data.data
     },
     async deleteWord(id: string): Promise<IWords[]> {
         const { data } = await axios.delete<Response<IWords[]>>(url + id)
-        
+
         return data.data
     },
 }

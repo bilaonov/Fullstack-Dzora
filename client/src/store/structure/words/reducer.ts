@@ -16,6 +16,10 @@ export const wordsReducer = produce(
                 draft.items = action.payload
                 draft.loadingState = LoadingState.LOADED
                 break
+            case WordsActionsType.SET_WORD:
+                draft.singleWord = action.payload
+                draft.loadingState = LoadingState.LOADED
+                break
             case WordsActionsType.FETCH_WORDS:
                 draft.items = []
                 draft.loadingState = LoadingState.LOADING

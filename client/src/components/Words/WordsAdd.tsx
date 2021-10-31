@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
-
+import './Words.scss'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import Button from '@mui/material/Button'
@@ -52,9 +51,9 @@ const WordsAdd = () => {
 
     return (
         <div>
-            <Button onClick={handleOpen} variant="contained" color="success">
+            <p onClick={handleOpen} id={'openModal'}>
                 Добавить слово
-            </Button>
+            </p>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -62,6 +61,8 @@ const WordsAdd = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style} component="form" onSubmit={submitAddWord}>
+                    {error && <h4 style={{ color: 'red' }}>{error}</h4>}
+                    
                     <TextField
                         fullWidth
                         value={dig_word}

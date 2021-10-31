@@ -5,15 +5,22 @@ import {
     SetWordsLoadingStateActionInteface,
     DeleteWordsActionInterface,
     AddWordsActionInterface,
+    SearchWordsActionInterface,
+    SetWordActionInterface,
 } from './types/actionTypes'
 
-import { LoadingState, WordsState } from './types/state'
+import { IWords, LoadingState, WordsState } from './types/state'
 
 export const setWords = (
     payload: WordsState['items']
 ): SetWordsActionInterface => ({
     type: WordsActionsType.SET_WORDS,
     payload,
+})
+
+export const setWord = (payload: IWords | null): SetWordActionInterface => ({
+    type: WordsActionsType.SET_WORD,
+    payload
 })
 
 export const addWords = (payload: {
@@ -40,9 +47,18 @@ export const deleteWords = (id: string): DeleteWordsActionInterface => ({
     id,
 })
 
+export const searchWords = (
+    searchString: string
+): SearchWordsActionInterface => ({
+    type: WordsActionsType.SEARCH_WORDS,
+    searchString,
+})
+
 export type WordsActions =
+    | SetWordActionInterface
     | AddWordsActionInterface
     | FetchWordsActionInteface
     | SetWordsLoadingStateActionInteface
     | SetWordsActionInterface
     | DeleteWordsActionInterface
+    | SearchWordsActionInterface

@@ -3,6 +3,7 @@ import config from 'config'
 import express from 'express'
 import authRouter from './routes/auth.routes'
 import wordRouter from './routes/word.routes'
+import searchRouter from './routes/search.routes'
 import corsMiddleware from './middleware/cors.middleware'
 
 const app = express()
@@ -12,6 +13,7 @@ app.use(corsMiddleware)
 app.use(express.json())
 app.use('/api/auth/', authRouter)
 app.use('/api/', wordRouter)
+app.use('/api/words/search', searchRouter)
 
 async function start() {
     try {
