@@ -10,12 +10,24 @@
     width: 100%;
     flex-wrap: wrap;
     padding: 40px 0;
+
     &__container {
         position: relative;
         width: 300px;
         display: flex;
         height: 350px;
         margin: 30px;
+        &:hover {
+            a {
+                color: white;
+            }
+            p {
+                color: white;
+            }
+            h3 {
+                color: white;
+            }
+        }
     }
     &__box {
         position: absolute;
@@ -33,7 +45,7 @@
         &:hover {
             transform: translateY(-30px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(45deg, #43324b, #271f96);
+            background: linear-gradient(45deg, #0a0a0a, #525fd4);
         }
     }
 

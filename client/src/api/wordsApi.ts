@@ -1,4 +1,4 @@
-import { IWords, WordsState } from './../store/structure/words/types/state'
+import { IWords, WordsState } from './../store/ducks/words/types/state'
 import axios from 'axios'
 
 interface Response<T> {

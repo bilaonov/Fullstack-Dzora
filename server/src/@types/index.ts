@@ -1,4 +1,4 @@
-import { Document } from 'mongoose'
+import { Document, ObjectId } from 'mongoose'
 
 export interface IUser extends Document {
     email: string
@@ -6,6 +6,29 @@ export interface IUser extends Document {
 }
 
 export interface IWord extends Document {
-    dig_word: string
-    rus_word: string
+    word: string
+    translate: string
+    _id: ObjectId | null
+}
+
+export interface Results {
+    totalCount: Result
+    next: Result
+    previous: Result
+    results: any
+}
+
+interface Result {
+    page: number
+    limit: number
+    totalCount: number
+    
+}
+
+declare global {
+    namespace Express {
+        interface Response {
+            paginationResults?: Results
+        }
+    }
 }

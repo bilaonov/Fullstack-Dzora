@@ -18,7 +18,7 @@ export const setWords = (
     payload,
 })
 
-export const setWord = (payload: IWords | null): SetWordActionInterface => ({
+export const setWord = (payload: IWords [] | null): SetWordActionInterface => ({
     type: WordsActionsType.SET_WORD,
     payload
 })

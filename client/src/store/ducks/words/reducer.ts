@@ -6,7 +6,7 @@ import { LoadingState, WordsState } from './types/state'
 const initialWordsState: WordsState = {
     items: [],
     loadingState: LoadingState.NEVER,
-    singleWord: null,
+    searchWords: null,
 }
 
 export const wordsReducer = produce(
@@ -17,7 +17,7 @@ export const wordsReducer = produce(
                 draft.loadingState = LoadingState.LOADED
                 break
             case WordsActionsType.SET_WORD:
-                draft.singleWord = action.payload
+                draft.searchWords = action.payload
                 draft.loadingState = LoadingState.LOADED
                 break
             case WordsActionsType.FETCH_WORDS:

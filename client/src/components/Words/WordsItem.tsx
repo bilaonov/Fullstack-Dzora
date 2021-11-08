@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import '../../App.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteWords, fetchWords } from '../../store/structure/words/actionCreators'
-import { selectWordsItems } from '../../store/structure/words/selectors'
+import { deleteWords, fetchWords } from '../../store/ducks/words/actionCreators'
+import { selectWordsItems } from '../../store/ducks/words/selectors'
 
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -40,10 +40,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const WordsItem = () => {
     const dispatch = useDispatch()
     const items = useSelector(selectWordsItems)
-
-    useEffect(() => {
-        dispatch(fetchWords())
-    }, [dispatch])
 
     return (
         <TableContainer component={Paper}>

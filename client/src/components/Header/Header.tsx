@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Header.scss'
-import { Link } from 'react-router-dom'
+
+import Auth from '../Auth/Auth'
 
 const Header: React.FC = () => {
     const [scrollValue, setScrollValue] = useState<any>()
@@ -12,18 +13,13 @@ const Header: React.FC = () => {
     }, [])
     return (
         <div>
-            <header className="header" style={{ top: -scrollValue * 0.3 + 'px' }}>
+            <header
+                className="header"
+                style={{ top: -scrollValue * 0.3 + 'px' }}
+            >
                 <h1>DZORA</h1>
-                <div className="header__link">
-                    <Link to="/">
-                        <span className="link_home">Главная</span>
-                    </Link>
-                    <Link to="/ansowers">
-                        <span className="link_ansower">Вопросы/Ответы</span>
-                    </Link>
-                    <Link to="/login">
-                        <span className="link_login">Войти</span>
-                    </Link>
+                <div className="header__link"> 
+                    <Auth />
                 </div>
             </header>
         </div>

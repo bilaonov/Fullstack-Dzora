@@ -12,7 +12,7 @@ export interface IWords {
 }
 
 export interface WordsState {
-    items: IWords[]
+    items: IWords[] 
     loadingState: LoadingState
-    singleWord: IWords | null
+    searchWords: IWords[] | null
 }

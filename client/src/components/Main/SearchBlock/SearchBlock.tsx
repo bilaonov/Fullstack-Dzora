@@ -3,7 +3,7 @@ import './SearchBlock.scss'
 import Searchimg from '../../../assets/SearchIcon.png'
 import imgplaces from '../../../assets/arrow.png'
 import mediaQuery from '../../../utils/mediaQuery'
-import { searchWords } from '../../../store/structure/words/actionCreators'
+import { searchWords } from '../../../store/ducks/words/actionCreators'
 import { useDispatch } from 'react-redux'
 
 const SearchBlock: React.FC = () => {

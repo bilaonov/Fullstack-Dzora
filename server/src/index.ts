@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import config from 'config'
 import express from 'express'
 import authRouter from './routes/auth.routes'
-import wordRouter from './routes/word.routes'
+import wordRouter from './routes/words.routes'
 import searchRouter from './routes/search.routes'
 import corsMiddleware from './middleware/cors.middleware'
 

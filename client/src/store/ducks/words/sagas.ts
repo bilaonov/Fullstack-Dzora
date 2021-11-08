@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { wordsApi } from '../../../api/wordsApi'
-import { addWords, deleteWords, searchWords, setWord, setWords } from './actionCreators'
+import { addWords, deleteWords, setWord, setWords } from './actionCreators'
 import {
     AddWordsActionInterface,
     DeleteWordsActionInterface,

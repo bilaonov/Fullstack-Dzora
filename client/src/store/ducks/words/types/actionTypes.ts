@@ -18,7 +18,7 @@ export interface SetWordsActionInterface extends Action<WordsActionsType> {
 
 export interface SetWordActionInterface extends Action<WordsActionsType> {
     type: WordsActionsType.SET_WORD
-    payload: IWords | null
+    payload: IWords [] | null
 }
 
 export interface FetchWordsActionInteface extends Action<WordsActionsType> {

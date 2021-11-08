@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
-import { addWords } from '../../store/structure/words/actionCreators'
+import { addWords } from '../../store/ducks/words/actionCreators'
 import { useDispatch } from 'react-redux'
 
 const style = {
