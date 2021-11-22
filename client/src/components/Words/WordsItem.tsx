@@ -64,17 +64,21 @@ const WordsItem = () => {
                     {items.map((item) => (
                         <StyledTableRow key={item._id}>
                             <StyledTableCell align="left">
-                                {item.dig_word}
+                                {item.word}
                             </StyledTableCell>
                             <StyledTableCell align="center">
-                                {item.rus_word}
+                                {item.translate}
                             </StyledTableCell>
                             <StyledTableCell align="right">
                                 <IconButton>
                                     <EditIcon />
                                 </IconButton>
-                                <IconButton onClick={(e) => dispatch(deleteWords(item._id))}>
-                                    <CloseIcon/>
+                                <IconButton
+                                    onClick={(e) =>
+                                        dispatch(deleteWords(item._id))
+                                    }
+                                >
+                                    <CloseIcon />
                                 </IconButton>
                             </StyledTableCell>
                         </StyledTableRow>

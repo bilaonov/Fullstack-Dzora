@@ -4,12 +4,9 @@ import { User } from './state'
 
 export enum UserActionType {
     REGISTR_SUCCESS = 'user/REGISTR_SUCCESS',
-    REGISTR_FAIL = 'user/REGISTR_FAIL',
     SET_USER = 'user/SET_USER',
-    USER_LOADING_STATE = 'user/USER_LOADING_STATE',
-    AUTH_ERROR = 'user/AUTH_ERROR',
+    AUTH_LOADING_STATUS = 'user/USER_LOADING_STATE',
     LOGIN_SOCCESS = 'user/LOGIN_SOCCESS',
-    LOGIN_FAIL = 'user/LOGIN_FAIL',
     LOGOUT = 'user/LOGOUT',
 }
 
@@ -30,17 +27,9 @@ export interface SetRegistrActionInterface extends Action<UserActionType> {
     payload: RegistrData
 }
 
-export interface FailRegistrActionInterface extends Action<UserActionType> {
-    type: UserActionType.REGISTR_FAIL
-}
-
 export interface SetUserActionInterface extends Action<UserActionType> {
     type: UserActionType.SET_USER
     payload: User | null
-}
-
-export interface ErrorAuthActionInterface extends Action<UserActionType> {
-    type: UserActionType.AUTH_ERROR
 }
 
 export interface LoginSuccessActionInterface extends Action<UserActionType> {
@@ -48,16 +37,12 @@ export interface LoginSuccessActionInterface extends Action<UserActionType> {
     payload: LoginData
 }
 
-export interface LoginFailActionInterface extends Action<UserActionType> {
-    type: UserActionType.LOGIN_FAIL
-}
-
 export interface LogoutActionInterface extends Action<UserActionType> {
     type: UserActionType.LOGOUT
 }
 
-export interface UserLoadingStatusActionInterface
+export interface AuthLoadingStatusActionInterface
     extends Action<UserActionType> {
-    type: UserActionType.USER_LOADING_STATE
+    type: UserActionType.AUTH_LOADING_STATUS
     payload: LoadingState
 }

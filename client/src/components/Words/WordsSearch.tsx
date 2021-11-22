@@ -10,11 +10,12 @@ const WordsSearch: React.FC = () => {
     return (
         <div className="searchWords">
             <div className="searchWords__words">
-                {item && item.map((word: any) => (
-                    <p key={word._id}>
-                        {word.dig_word} - {word.rus_word}
-                    </p>
-                ))}
+                {item &&
+                    item.map((word: any) => (
+                        <p key={word._id}>
+                            {word.word} - {word.translate}
+                        </p>
+                    ))}
             </div>
         </div>
     )

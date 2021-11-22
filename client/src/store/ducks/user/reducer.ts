@@ -14,8 +14,12 @@ export const userReducer = produce((draft: Draft<UserState>, action: UserActions
         case UserActionType.SET_USER:
             draft.data = action.payload
             break
-        case UserActionType.USER_LOADING_STATE:
+        case UserActionType.AUTH_LOADING_STATUS:
             draft.status = action.payload
+            break
+        case UserActionType.LOGOUT:
+            draft.status = LoadingState.SUCCESS
+            draft.data = null
             break
         default: 
                 break

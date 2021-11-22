@@ -1,10 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { AuthApi } from '../../../api/authApi'
 import { LoadingState } from '../../types'
-import { setUserLoadingStatus } from './actionCreators'
+import { logout, setUser, setUserLoadingStatus } from './actionCreators'
 import {
     LoginSuccessActionInterface,
-    LogoutActionInterface,
     SetRegistrActionInterface,
     UserActionType,
 } from './types/actionTypes'
@@ -12,7 +11,11 @@ import {
 export function* loginRequest({ payload }: LoginSuccessActionInterface) {
     try {
         yield put(setUserLoadingStatus(LoadingState.LOADING))
-
+        //@ts-ignore
+        const data = yield call(AuthApi.login, payload)
+        window.localStorage.setItem('token', data.token)
+        yield put(setUser(data))
+        yield put(setUserLoadingStatus(LoadingState.SUCCESS))
     } catch (e) {
         yield put(setUserLoadingStatus(LoadingState.ERROR))
     }
@@ -23,16 +26,6 @@ export function* registrRequest({ payload }: SetRegistrActionInterface) {
         yield put(setUserLoadingStatus(LoadingState.LOADING))
         yield call(AuthApi.register, payload)
         yield put(setUserLoadingStatus(LoadingState.SUCCESS))
-        
-    } catch (e) {
-        yield put(setUserLoadingStatus(LoadingState.ERROR))
-    }
-}
-
-export function* logoutRequest() {
-    try {
-        yield put(setUserLoadingStatus(LoadingState.LOADING))
-        
     } catch (e) {
         yield put(setUserLoadingStatus(LoadingState.ERROR))
     }
@@ -41,5 +34,4 @@ export function* logoutRequest() {
 export function* userSaga() {
     yield takeLatest(UserActionType.LOGIN_SOCCESS, loginRequest)
     yield takeLatest(UserActionType.REGISTR_SUCCESS, registrRequest)
-    yield takeLatest(UserActionType.LOGOUT, logoutRequest)
 }

@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import './Header.scss'
 
-import Auth from '../Auth/Auth'
+import Auth from '../../Pages/Auth/Auth'
+import { selectAuth } from '../../store/ducks/user/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../store/ducks/user/actionCreators'
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import IconButton from '@mui/material/IconButton'
 
 const Header: React.FC = () => {
     const [scrollValue, setScrollValue] = useState<any>()
@@ -11,6 +16,14 @@ const Header: React.FC = () => {
             setScrollValue(value)
         })
     }, [])
+
+    const dispatch = useDispatch()
+    const { data }: any = useSelector(selectAuth)
+
+    const logoutUser = () => {
+        dispatch(logout())
+    }
+
     return (
         <div>
             <header
@@ -18,9 +31,24 @@ const Header: React.FC = () => {
                 style={{ top: -scrollValue * 0.3 + 'px' }}
             >
                 <h1>DZORA</h1>
-                <div className="header__link"> 
-                    <Auth />
-                </div>
+
+                {data ? (
+                    <div className="header__link">
+                        <p>
+                            {data.name}
+                            <IconButton
+                                aria-label="Example"
+                                onClick={logoutUser}
+                            >
+                                <ExitToAppIcon />
+                            </IconButton>
+                        </p>
+                    </div>
+                ) : (
+                    <div className="header__link">
+                        <Auth />
+                    </div>
+                )}
             </header>
         </div>
     )

@@ -24,8 +24,8 @@ export const setWord = (payload: IWords [] | null): SetWordActionInterface => ({
 })
 
 export const addWords = (payload: {
-    rus_word: string
-    dig_word: string
+    word: string
+    translate: string
 }): AddWordsActionInterface => ({
     type: WordsActionsType.ADD_WORDS,
     payload,

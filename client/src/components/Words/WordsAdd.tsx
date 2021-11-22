@@ -24,8 +24,8 @@ const style = {
 
 const WordsAdd = () => {
     const [open, setOpen] = useState(false)
-    const [dig_word, setDigWord] = useState<string>('')
-    const [rus_word, setRusWord] = useState<string>('')
+    const [word, setWord] = useState<string>('')
+    const [translate, setTranslate] = useState<string>('')
     const [error, setError] = useState('')
 
     const dispatch = useDispatch()
@@ -39,12 +39,12 @@ const WordsAdd = () => {
 
     const submitAddWord: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
-        if (!dig_word || !rus_word) {
+        if (!word || !translate) {
             setError('Пожалуйста заполните все поля')
         } else {
-            dispatch(addWords({ rus_word, dig_word }))
-            setDigWord('')
-            setRusWord('')
+            dispatch(addWords({ translate, word }))
+            setWord('')
+            setTranslate('')
             setOpen(false)
         }
     }
@@ -65,17 +65,17 @@ const WordsAdd = () => {
                     
                     <TextField
                         fullWidth
-                        value={dig_word}
+                        value={word}
                         id="standard-textarea"
                         label="Добавить слово на дигорском"
                         placeholder="Введите слово на дигорском"
-                        onChange={(e) => setDigWord(e.target.value)}
+                        onChange={(e) => setWord(e.target.value)}
                         variant="standard"
                     />
                     <TextField
-                        onChange={(e) => setRusWord(e.target.value)}
+                        onChange={(e) => setTranslate(e.target.value)}
                         fullWidth
-                        value={rus_word}
+                        value={translate}
                         id="standard-textarea"
                         label="Добавить слово на русском"
                         placeholder="Введите слово на русском"

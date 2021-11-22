@@ -6,18 +6,22 @@ interface ResponseApi {
     data: any
 }
 
-const url = 'http://localhost:5000/api'
-
 export const AuthApi = {
     async login(formData: LoginData): Promise<ResponseApi> {
-        const { data } = await axios.post<ResponseApi>(url + '/auth/login', {
+        const { data } = await axios.post<ResponseApi>('/api/auth/login/', {
             email: formData.email, 
             password: formData.password
         })
         return data
     },
     async register(formData: RegistrData): Promise<ResponseApi> {
-        const { data } = await axios.post<ResponseApi>(url + '/auth/registration/', formData)
+        const { data } = await axios.post<ResponseApi>('/api/auth/registration/', {
+            email: formData.email,
+            name: formData.name,
+            password: formData.password,
+            password2: formData.password2,
+      
+        })
         return data
     }
 }

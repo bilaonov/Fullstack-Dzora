@@ -20,7 +20,7 @@ export function paginationResults(model: any) {
             results.next = {
                 page: page + 1,
                 limit: limit,
-                totalCount: totalCount
+                totalCount: totalCount,
             }
         }
 
@@ -28,7 +28,7 @@ export function paginationResults(model: any) {
             results.previous = {
                 page: page - 1,
                 limit: limit,
-                totalCount: totalCount
+                totalCount: totalCount,
             }
         }
         try {
@@ -38,8 +38,7 @@ export function paginationResults(model: any) {
                 .skip(startIndex)
                 .exec()
             res.paginationResults = results
- 
-            
+
             next()
         } catch (e) {
             res.status(500).json({ message: e.message })

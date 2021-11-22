@@ -28,6 +28,5 @@ const wordsSchema = new Schema(
 )
 
 wordsSchema.index({ word: 'text' })
-wordsSchema.index({ translate: 'text' })
 
 export default model<IWord>('Words', wordsSchema)

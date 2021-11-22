@@ -1,11 +1,9 @@
 .header {
     height: 70px;
     position: fixed;
-    max-width: 1520px;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     z-index: 110;
     margin: 10px;
     h1 {
@@ -17,69 +15,16 @@
         display: flex;
         align-items: center;
 
-        a {
-            position: relative;
-            width: 180px;
-            height: 35px;
-            text-align: center;
-            line-height: 55px;
-            margin: 5px;
-            display: flex;
-            align-items: center;
-            text-transform: uppercase;
-            background: rgb(48, 110, 158);
+        p {
+            display: inline-block;
+            padding: 2px 10px;
+            background: #03a9f4;
+            border-radius: 20px;
             color: #fff;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            letter-spacing: 2px;
-            overflow: hidden;
-            border-radius: 4px;
-            span {
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 100%;
-                height: 100%;
-                z-index: 110;
-                transition: 0s ease-in;
-            }
-            :before {
-                content: '';
-                position: absolute;
-                bottom: -250px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 250px;
-                height: 250px;
-                border-radius: 50%;
-                transition: 0.4s ease-in;
-                z-index: -1;
-            }
-            .link_home::before {
-                background: #d6d6d6;
-            }
-            .link_ansower::before {
-                background: #e92c2c;
-            }
-            .link_login::before {
-                background: #dbd811;
-            }
-            :hover:before {
-                bottom: -150px;
-            }
-            :nth-child(2):before {
-                bottom: 60px;
-            }
+            font-size: 20px;
+            font-weight: 300;
+            box-shadow: 0 10px 20px rgba(102, 64, 64, 0.2);
+        }
 
-            :nth-child(2):hover:before {
-                bottom: -40px;
-            }
-        }
-        a:hover span {
-            color: #fff;
-            z-index: 110;
-        }
     }
 }

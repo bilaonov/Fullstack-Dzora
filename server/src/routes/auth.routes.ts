@@ -8,8 +8,6 @@ import config from 'config'
 
 const router = Router()
 
-
-
 router.post(
     '/registration',
     [
@@ -30,7 +28,7 @@ router.post(
                     error,
                 })
             }
-            const { email, password } = req.body
+            const { name, email, password } = req.body
             const condidate = await User.findOne({ email })
 
             if (condidate) {
@@ -40,7 +38,11 @@ router.post(
             }
             const hashPassword = await bcrypt.hash(password, 8)
 
-            const user: IUser = new User({ email, password: hashPassword })
+            const user: IUser = new User({
+                name,
+                email,
+                password: hashPassword,
+            })
             await user.save()
             res.json({ message: 'Пользователь успешно зарегистрирован ' })
         } catch (e) {
@@ -68,10 +70,9 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
         })
         res.json({
             token,
-            user: {
-                id: user.id,
-                email: user.email,
-            },
+            id: user.id,
+            name: user.name,
+            email: user.email,
         })
     } catch (e) {
         console.log(e)

@@ -7,12 +7,13 @@ export enum LoadingState {
 
 export interface IWords {
     _id: string
-    dig_word: string
-    rus_word: string
+    word: string
+    translate: string
+    audio?: string
 }
 
 export interface WordsState {
-    items: IWords[] 
+    items: IWords[]
     loadingState: LoadingState
     searchWords: IWords[] | null
 }

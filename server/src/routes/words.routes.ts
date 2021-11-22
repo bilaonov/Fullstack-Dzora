@@ -27,11 +27,11 @@ router.post(
                 })
                 return
             }
-            const words: IWord = new Words({ 
+            const words: IWord = new Words({
                 word,
                 translate,
-                user
-             })
+                user,
+            })
             await words.save()
             res.json({ message: 'Слова успешно добавлены спасибо' })
         } catch (e) {
@@ -59,7 +59,6 @@ router.get(
         }
     }
 )
-
 
 
 router.get('/words/:id', async (req: Request, res: Response): Promise<void> => {
