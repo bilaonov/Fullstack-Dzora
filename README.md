@@ -1,4 +1,4 @@
-<h2>Dzora Fullstack <h2>
+<h2>Dzora Fullstack <h4>
 
 
 Создание онлайн переводчика с Осетинского на Русский
