@@ -4,7 +4,7 @@
 Создание онлайн переводчика с Осетинского на Русский
 
 Стек технологий:
-Typescript + UI:React(redux) + back:Node(Express) 
+JavaScript(Typescript) + React(redux-sage) + back:Node(Express, MongoDB) 
 
   
 1) cd server and cd client, npm install
