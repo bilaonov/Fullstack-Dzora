@@ -1,5 +1,4 @@
-import { LoadingState } from "../../../types";
-
+import { LoadingState } from '../../../types'
 
 export interface User {
     _id: string
@@ -12,8 +11,8 @@ export interface User {
     updateAt?: string
 }
 
-
 export interface UserState {
     data: User | null
+    isAuth: boolean
     status: LoadingState
 }

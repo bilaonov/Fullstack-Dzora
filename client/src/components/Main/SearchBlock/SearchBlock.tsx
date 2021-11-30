@@ -24,14 +24,13 @@ const SearchBlock: React.FC = () => {
 
     const dispatch = useDispatch()
 
-    const submitAddWord: React.FormEventHandler<HTMLFormElement> = (e) => {
-        e.preventDefault()
-        if (!text) {
-            setError('Пожалуйста заполните все поля')
+    const searchHeandler = (e: any) => {
+        setText(e.target.value)
+        if (e.target.value !== '') {
+            dispatch(searchWords(e.target.value))
         } else {
             
-            dispatch(searchWords(text))
-            setText('')
+            dispatch(searchWords(null))
         }
     }
 
@@ -39,9 +38,7 @@ const SearchBlock: React.FC = () => {
         <div>
             <div className="search">
                 <h1>Дигорско-русский онлайн словарь</h1>
-                <form className="search-block"
-                onSubmit={submitAddWord}
-                >
+                <form className="search-block">
                     <img
                         className="search-block__img"
                         src={Searchimg}
@@ -50,7 +47,7 @@ const SearchBlock: React.FC = () => {
                     <input
                         name="text"
                         value={text}
-                        onChange={(e) => setText(e.target.value)}
+                        onChange={(e) => searchHeandler(e)}
                         className="search-block__text-input"
                         type="text"
                         placeholder={placeholder}
@@ -68,11 +65,6 @@ const SearchBlock: React.FC = () => {
                         />
                         <span>{clickLang !== true ? 'ДИГ' : 'РУС'}</span>
                     </div>
-                    <input
-                        className="search-block__text-btn"
-                        type="submit"
-                        value="НАЙТИ"
-                    />
                 </form>
             </div>
         </div>

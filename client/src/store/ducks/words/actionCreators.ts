@@ -1,26 +1,25 @@
+import { LoadingState } from '../../types'
 import {
     SetWordsActionInterface,
     WordsActionsType,
     FetchWordsActionInteface,
-    SetWordsLoadingStateActionInteface,
+    SetWordsLoadingStatusActionInteface,
     DeleteWordsActionInterface,
     AddWordsActionInterface,
     SearchWordsActionInterface,
     SetWordActionInterface,
 } from './types/actionTypes'
 
-import { IWords, LoadingState, WordsState } from './types/state'
+import { IWords, WordsState } from './types/state'
 
-export const setWords = (
-    payload: WordsState['items']
-): SetWordsActionInterface => ({
+export const setWords = (payload: WordsState['items']): SetWordsActionInterface => ({
     type: WordsActionsType.SET_WORDS,
     payload,
 })
 
-export const setWord = (payload: IWords [] | null): SetWordActionInterface => ({
+export const setWord = (payload: IWords[] | null): SetWordActionInterface => ({
     type: WordsActionsType.SET_WORD,
-    payload
+    payload,
 })
 
 export const addWords = (payload: {
@@ -35,9 +34,9 @@ export const fetchWords = (): FetchWordsActionInteface => ({
     type: WordsActionsType.FETCH_WORDS,
 })
 
-export const setWordsLoadingStatw = (
-    payload: LoadingState
-): SetWordsLoadingStateActionInteface => ({
+export const setWordsLoadingStatus = (
+    payload: LoadingState,
+): SetWordsLoadingStatusActionInteface => ({
     type: WordsActionsType.SET_LOADING_STATE,
     payload,
 })
@@ -47,9 +46,7 @@ export const deleteWords = (id: string): DeleteWordsActionInterface => ({
     id,
 })
 
-export const searchWords = (
-    searchString: string
-): SearchWordsActionInterface => ({
+export const searchWords = (searchString: string | null): SearchWordsActionInterface => ({
     type: WordsActionsType.SEARCH_WORDS,
     searchString,
 })
@@ -58,7 +55,7 @@ export type WordsActions =
     | SetWordActionInterface
     | AddWordsActionInterface
     | FetchWordsActionInteface
-    | SetWordsLoadingStateActionInteface
+    | SetWordsLoadingStatusActionInteface
     | SetWordsActionInterface
     | DeleteWordsActionInterface
     | SearchWordsActionInterface

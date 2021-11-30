@@ -1,5 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { wordsApi } from '../../../api/wordsApi'
+import { LoadingState } from '../../types'
 import { addWords, deleteWords, setWord, setWords } from './actionCreators'
 import {
     AddWordsActionInterface,
@@ -7,7 +8,6 @@ import {
     SearchWordsActionInterface,
     WordsActionsType,
 } from './types/actionTypes'
-import { LoadingState } from './types/state'
 
 export function* fetchWordsRequest(): any {
     try {
@@ -36,9 +36,7 @@ export function* deleteWordsRequest({ id }: DeleteWordsActionInterface): any {
     } catch (e) {}
 }
 
-export function* searchWordsRequest({
-    searchString,
-}: SearchWordsActionInterface): any {
+export function* searchWordsRequest({ searchString }: SearchWordsActionInterface): any {
     try {
         const item = yield call(wordsApi.searchWords, searchString)
         yield put(setWord(item))

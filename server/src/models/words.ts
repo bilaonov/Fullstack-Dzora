@@ -3,10 +3,6 @@ import { Schema, model } from 'mongoose'
 
 const wordsSchema = new Schema(
     {
-        user: {
-            type: Schema.Types.ObjectId,
-            ref: "users"
-        },
         word: {
             type: String,
             unique: true,
@@ -18,15 +14,18 @@ const wordsSchema = new Schema(
             lowercase: true,
         },
         audio: {
-            type: String
-        }
+            type: String,
+        },
+        avatar: {
+            type: String,
+        },
     },
     {
         versionKey: false,
-        timestamps: true
+        timestamps: true,
     }
 )
 
 wordsSchema.index({ word: 'text' })
 
-export default model<IWord>('Words', wordsSchema)
+export default model<IWord>('Word', wordsSchema)

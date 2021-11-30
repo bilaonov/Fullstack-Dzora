@@ -5,8 +5,20 @@ import jwt from 'jsonwebtoken'
 import { check, validationResult } from 'express-validator'
 import { IUser } from '../@types'
 import config from 'config'
+import { authMiddleware } from '../middleware/auth.middlewate'
 
 const router = Router()
+
+router.get('/auth', authMiddleware, async (req: any, res: any) => {
+    try {
+        const user = await User.findById(req.user._id).select('-password')
+
+        res.json(user)
+    } catch(e) {
+        console.log(e)
+        res.send({ message: 'Server error' })
+    }
+})
 
 router.post(
     '/registration',
@@ -49,7 +61,7 @@ router.post(
             console.log(e)
             res.send({ message: 'Server error' })
         }
-    }
+    },
 )
 
 router.post('/login', async (req: Request, res: Response): Promise<void> => {

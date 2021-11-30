@@ -1,7 +1,8 @@
+import axios from 'axios'
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { AuthApi } from '../../../api/authApi'
 import { LoadingState } from '../../types'
-import { logout, setUser, setUserLoadingStatus } from './actionCreators'
+import { logout, setAuth, setUser, setUserLoadingStatus } from './actionCreators'
 import {
     LoginSuccessActionInterface,
     SetRegistrActionInterface,
@@ -31,7 +32,22 @@ export function* registrRequest({ payload }: SetRegistrActionInterface) {
     }
 }
 
+export function* setAuthRequest() {
+    try {
+        yield put(setUserLoadingStatus(LoadingState.LOADING))
+        const token = localStorage.getItem('token')
+        //@ts-ignore
+        const { data } = yield axios.get('auth/login/withToken', { headers: { Token: token } })
+        yield put(
+            setUser(data),
+        )
+
+        yield put(setUserLoadingStatus(LoadingState.SUCCESS))
+    } catch (e) {}
+}
+
 export function* userSaga() {
     yield takeLatest(UserActionType.LOGIN_SOCCESS, loginRequest)
     yield takeLatest(UserActionType.REGISTR_SUCCESS, registrRequest)
+    yield takeLatest(UserActionType.SET_AUTH, setAuthRequest)
 }

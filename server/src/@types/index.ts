@@ -22,7 +22,6 @@ interface Result {
     page: number
     limit: number
     totalCount: number
-    
 }
 
 declare global {

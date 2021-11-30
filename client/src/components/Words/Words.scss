@@ -3,24 +3,20 @@
     position: relative;
     top: -90px;
     width: 100%;
-    
+
     margin: 0 auto;
     background-color: white;
-    
+
     height: auto;
     border-radius: 4px;
     &__words {
         display: block;
-  
     }
     p {
-        
-        border-top: 1px solid #000000;
         width: 100%;
-        text-align:left;
+        text-align: left;
         padding: 20px;
         letter-spacing: 2px;
-        
     }
 }
 

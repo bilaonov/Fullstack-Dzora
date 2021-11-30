@@ -1,5 +1,6 @@
 import { Action } from 'redux'
-import { IWords, LoadingState, WordsState } from './state'
+import { LoadingState } from '../../../types'
+import { IWords, WordsState } from './state'
 
 export enum WordsActionsType {
     SET_WORDS = 'words/SET_WORDS',
@@ -18,7 +19,7 @@ export interface SetWordsActionInterface extends Action<WordsActionsType> {
 
 export interface SetWordActionInterface extends Action<WordsActionsType> {
     type: WordsActionsType.SET_WORD
-    payload: IWords [] | null
+    payload: IWords[] | null
 }
 
 export interface FetchWordsActionInteface extends Action<WordsActionsType> {
@@ -35,7 +36,7 @@ export interface AddWordsActionInterface extends Action<WordsActionsType> {
 
 export interface SearchWordsActionInterface extends Action<WordsActionsType> {
     type: WordsActionsType.SEARCH_WORDS
-    searchString: string
+    searchString: string | null
 }
 
 export interface DeleteWordsActionInterface extends Action<WordsActionsType> {
@@ -43,8 +44,7 @@ export interface DeleteWordsActionInterface extends Action<WordsActionsType> {
     id: string
 }
 
-export interface SetWordsLoadingStateActionInteface
-    extends Action<WordsActionsType> {
+export interface SetWordsLoadingStatusActionInteface extends Action<WordsActionsType> {
     type: WordsActionsType.SET_LOADING_STATE
     payload: LoadingState
 }

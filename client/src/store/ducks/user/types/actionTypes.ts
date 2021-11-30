@@ -7,6 +7,7 @@ export enum UserActionType {
     SET_USER = 'user/SET_USER',
     AUTH_LOADING_STATUS = 'user/USER_LOADING_STATE',
     LOGIN_SOCCESS = 'user/LOGIN_SOCCESS',
+    SET_AUTH = 'user/SET_AUTH',
     LOGOUT = 'user/LOGOUT',
 }
 
@@ -32,6 +33,10 @@ export interface SetUserActionInterface extends Action<UserActionType> {
     payload: User | null
 }
 
+export interface SetAuthActionInterface extends Action<UserActionType> {
+    type: UserActionType.SET_AUTH
+}
+
 export interface LoginSuccessActionInterface extends Action<UserActionType> {
     type: UserActionType.LOGIN_SOCCESS
     payload: LoginData
@@ -41,8 +46,7 @@ export interface LogoutActionInterface extends Action<UserActionType> {
     type: UserActionType.LOGOUT
 }
 
-export interface AuthLoadingStatusActionInterface
-    extends Action<UserActionType> {
+export interface AuthLoadingStatusActionInterface extends Action<UserActionType> {
     type: UserActionType.AUTH_LOADING_STATUS
     payload: LoadingState
 }
