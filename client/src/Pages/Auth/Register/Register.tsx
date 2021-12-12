@@ -4,12 +4,8 @@ import { useForm } from 'react-hook-form'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import Box from '@mui/material/Box'
-import Modal from '@mui/material/Modal'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
-import FormControl from '@material-ui/core/FormControl'
-import FormGroup from '@material-ui/core/FormGroup'
-import Typography from '@mui/material/Typography'
 import { registerSchema } from '../../../services/helpers/validation'
 import { useDispatch } from 'react-redux'
 import { setRegistr } from '../../../store/ducks/user/actionCreators'
@@ -75,9 +71,7 @@ const Register: React.FC<RegisterModalProps> = ({ open, onClose }) => {
                         placeholder="Введите пароль"
                         variant="standard"
                         type="password"
-                        helperText={
-                            errors.password ? errors.password.message : ''
-                        }
+                        helperText={errors.password ? errors.password.message : ''}
                         error={!!errors.password}
                         {...register('password')}
                     />
@@ -89,25 +83,15 @@ const Register: React.FC<RegisterModalProps> = ({ open, onClose }) => {
                         label="Введите повторно пароль"
                         placeholder="Введите пароль"
                         variant="standard"
-                        helperText={
-                            errors.password2 ? errors.password2.message : ''
-                        }
+                        helperText={errors.password2 ? errors.password2.message : ''}
                         error={!!errors.password2}
                         {...register('password2')}
                     />
                     <Box sx={{ display: 'flex' }}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={onClose}
-                        >
+                        <Button variant="contained" color="primary" onClick={onClose}>
                             Назад
                         </Button>
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="success"
-                        >
+                        <Button type="submit" variant="contained" color="success">
                             Регистрация
                         </Button>
                     </Box>

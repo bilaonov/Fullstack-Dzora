@@ -16,26 +16,11 @@ const Section: React.FC = () => {
     return (
         <div>
             <section>
-                <img
-                    src={bg}
-                    style={{ top: -scrollValue * 0.3 + 'px' }}
-                    alt=""
-                    id="bg"
-                />
+                <img src={bg} style={{ top: -scrollValue * 0.3 + 'px' }} alt="" id="bg" />
 
-                <img
-                    src={moon}
-                    style={{ left: -scrollValue * 0.5 + 'px' }}
-                    alt="sad"
-                    id="moon"
-                />
+                <img src={moon} style={{ left: -scrollValue * 0.5 + 'px' }} alt="sad" id="moon" />
 
-                <img
-                    src={mountain}
-                    alt=""
-                    id="mountain"
-                    
-                />
+                <img src={mountain} alt="" id="mountain" />
 
                 <h2 style={{ top: scrollValue * 0.5 + 'px' }}>ОСЕТИЯ</h2>
             </section>

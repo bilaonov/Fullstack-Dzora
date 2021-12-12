@@ -1,5 +1,5 @@
 import { Action } from 'redux'
-import { LoadingState } from '../../../types'
+import { LoadingState } from '../../../../types'
 import { User } from './state'
 
 export enum UserActionType {

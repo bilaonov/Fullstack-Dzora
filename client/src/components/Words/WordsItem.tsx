@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../App.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteWords, fetchWords } from '../../store/ducks/words/actionCreators'
-import { selectWordsItems } from '../../store/ducks/words/selectors'
+import {
+    currentPageWords,
+    lastPageWords,
+    selectWordsItems,
+} from '../../store/ducks/words/selectors'
 
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -16,6 +20,8 @@ import SearchIcon from '@mui/icons-material/Search'
 import EditIcon from '@mui/icons-material/Edit'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -39,53 +45,60 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const WordsItem = () => {
     const dispatch = useDispatch()
-    const items = useSelector(selectWordsItems)
+    const data = useSelector(selectWordsItems)
+    const last_page = useSelector(lastPageWords)
+    const current_page = useSelector(currentPageWords)
+
+    const [page, setPage] = useState(1)
+    //@ts-ignore
+    const handleChange = (event: any, value: any) => {
+        setPage(value)
+    }
+
+    useEffect(() => {
+        dispatch(fetchWords(page))
+    }, [page])
 
     return (
-        <TableContainer component={Paper}>
-            <Table
-                sx={{ minWidth: 400, maxWidth: 800, mt: 5 }}
-                aria-label="customized table"
-            >
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell align="left">
-                            слова на дигорском
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                            на русском
-                        </StyledTableCell>
-                        <StyledTableCell align="right">
-                            <SearchIcon />
-                        </StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {items.map((item) => (
-                        <StyledTableRow key={item._id}>
-                            <StyledTableCell align="left">
-                                {item.word}
-                            </StyledTableCell>
-                            <StyledTableCell align="center">
-                                {item.translate}
-                            </StyledTableCell>
+        <>
+            <TableContainer component={Paper} sx={{ mt: 15 }}>
+                <Table sx={{ minWidth: 400, maxWidth: 800 }} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell align="left">слова на дигорском</StyledTableCell>
+                            <StyledTableCell align="center">на русском</StyledTableCell>
                             <StyledTableCell align="right">
-                                <IconButton>
-                                    <EditIcon />
-                                </IconButton>
-                                <IconButton
-                                    onClick={(e) =>
-                                        dispatch(deleteWords(item._id))
-                                    }
-                                >
-                                    <CloseIcon />
-                                </IconButton>
+                                <SearchIcon />
                             </StyledTableCell>
-                        </StyledTableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {data.map((item: any) => (
+                            <StyledTableRow key={item._id}>
+                                <StyledTableCell align="left">{item.word}</StyledTableCell>
+                                <StyledTableCell align="center">{item.translate}</StyledTableCell>
+                                <StyledTableCell align="right">
+                                    <IconButton>
+                                        <EditIcon />
+                                    </IconButton>
+                                    <IconButton onClick={() => dispatch(deleteWords(item._id))}>
+                                        <CloseIcon />
+                                    </IconButton>
+                                </StyledTableCell>
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+                <Stack spacing={2} sx={{ mt: 3, mb: 2 }}>
+                    <Pagination
+                        onChange={handleChange}
+                        page={current_page}
+                        count={last_page}
+                        color="primary"
+                    />
+                </Stack>
+            </TableContainer>
+        </>
     )
 }
 

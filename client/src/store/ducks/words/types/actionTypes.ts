@@ -1,5 +1,5 @@
 import { Action } from 'redux'
-import { LoadingState } from '../../../types'
+import { LoadingState } from '../../../../types'
 import { IWords, WordsState } from './state'
 
 export enum WordsActionsType {
@@ -10,11 +10,15 @@ export enum WordsActionsType {
     SET_WORD = 'words/SET_WORD',
     SEARCH_WORDS = 'words/SEARCH_WORDS',
     DELETE_WORDS = 'DELETE_WORDS',
+    SET_RECORDING = 'words/SET_RECORDING',
+    START_RECORDING = 'words/START_RECORDING',
+    STOP_RECORDING = 'words/STOP_RECORDING',
+    DELETE_RECORDING = 'words/DELETE_RECORDING',
 }
 
 export interface SetWordsActionInterface extends Action<WordsActionsType> {
     type: WordsActionsType.SET_WORDS
-    payload: WordsState['items']
+    payload: WordsState['data']
 }
 
 export interface SetWordActionInterface extends Action<WordsActionsType> {
@@ -24,6 +28,7 @@ export interface SetWordActionInterface extends Action<WordsActionsType> {
 
 export interface FetchWordsActionInteface extends Action<WordsActionsType> {
     type: WordsActionsType.FETCH_WORDS
+    page: number
 }
 
 export interface AddWordsActionInterface extends Action<WordsActionsType> {
@@ -42,6 +47,22 @@ export interface SearchWordsActionInterface extends Action<WordsActionsType> {
 export interface DeleteWordsActionInterface extends Action<WordsActionsType> {
     type: WordsActionsType.DELETE_WORDS
     id: string
+}
+
+export interface SetRecordingActionInterface extends Action<WordsActionsType> {
+    type: WordsActionsType.SET_RECORDING
+}
+
+export interface StopRecordingActionInterface extends Action<WordsActionsType> {
+    type: WordsActionsType.STOP_RECORDING
+}
+
+export interface StartRecordingActionInterface extends Action<WordsActionsType> {
+    type: WordsActionsType.START_RECORDING
+}
+
+export interface DeleteRecordingActionInterface extends Action<WordsActionsType> {
+    type: WordsActionsType.DELETE_RECORDING
 }
 
 export interface SetWordsLoadingStatusActionInteface extends Action<WordsActionsType> {

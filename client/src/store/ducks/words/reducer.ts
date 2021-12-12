@@ -1,36 +1,60 @@
-import produce, { Draft } from 'immer'
-import { LoadingState } from '../../types'
+import { LoadingState } from '../../../types'
 import { WordsActions } from './actionCreators'
 import { WordsActionsType } from './types/actionTypes'
 import { WordsState } from './types/state'
 
-const initialWordsState: WordsState = {
-    items: [],
-    loadingState: LoadingState.NEVER,
+const initialState: WordsState = {
+    data: [],
+    total: 0,
+    current_page: 0,
+    last_page: 0,
+    isLoading: LoadingState.NEVER,
     searchWords: null,
 }
 
-export const wordsReducer = produce((draft: Draft<WordsState>, action: WordsActions) => {
+const wordsReducer = (state = initialState, action: WordsActions) => {
     switch (action.type) {
         case WordsActionsType.SET_WORDS:
-            draft.items = action.payload
-            draft.loadingState = LoadingState.SUCCESS
-            break
-        case WordsActionsType.SET_WORD:
-            draft.searchWords = action.payload
-            draft.loadingState = LoadingState.SUCCESS
-            break
+            return {
+                ...state,
+                ...action.payload,
+                isLoading: LoadingState.SUCCESS,
+            }
         case WordsActionsType.FETCH_WORDS:
-            draft.items = []
-            draft.loadingState = LoadingState.SUCCESS
-            break
-        case WordsActionsType.SET_LOADING_STATE:
-            draft.loadingState = action.payload
-            break
-        case WordsActionsType.ADD_WORDS:
-            draft.loadingState = LoadingState.SUCCESS
-            break
+            return {
+                ...state,
+                data: [],
+                isLoading: LoadingState.LOADING,
+            }
         default:
-            break
+            return state
     }
-}, initialWordsState)
+}
+
+export default wordsReducer
+
+// export const wordsReducer = produce((draft: Draft<WordsState>, action: WordsActions) => {
+//     switch (action.type) {
+//         case WordsActionsType.SET_WORDS:
+
+//             draft.data = action.payload
+//             draft.loadingState = LoadingState.SUCCESS
+//             break
+//         case WordsActionsType.SET_WORD:
+//             draft.searchWords = action.payload
+//             draft.loadingState = LoadingState.SUCCESS
+//             break
+//         case WordsActionsType.FETCH_WORDS:
+//             draft.data = []
+//             draft.loadingState = LoadingState.SUCCESS
+//             break
+//         case WordsActionsType.SET_LOADING_STATE:
+//             draft.loadingState = action.payload
+//             break
+//         case WordsActionsType.ADD_WORDS:
+//             draft.loadingState = LoadingState.SUCCESS
+//             break
+//         default:
+//             break
+//     }
+// }, initialWordsState)

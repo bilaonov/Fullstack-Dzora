@@ -55,10 +55,9 @@ const Auth: React.FC = () => {
             >
                 <Box sx={style}>
                     <h3>Присоединяйтесь</h3>
-                    <Typography sx={{ mt: 2}}>
-                        Добро пожаловать на онлайн переводчик чтобы вы могли
-                        добавить слова нужно зарегистрироваться выберите одну из
-                        вариантов
+                    <Typography sx={{ mt: 2 }}>
+                        Добро пожаловать на онлайн переводчик чтобы вы могли добавить слова нужно
+                        зарегистрироваться выберите одну из вариантов
                     </Typography>
                     <Button
                         sx={{ mt: 3 }}
@@ -81,10 +80,7 @@ const Auth: React.FC = () => {
                 </Box>
             </Modal>
             <Login open={visibleModal === 'Login'} onClose={handleCloseModal} />
-            <Register
-                open={visibleModal === 'Register'}
-                onClose={handleCloseModal}
-            />
+            <Register open={visibleModal === 'Register'} onClose={handleCloseModal} />
         </div>
     )
 }

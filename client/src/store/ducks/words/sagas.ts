@@ -1,17 +1,18 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { wordsApi } from '../../../api/wordsApi'
-import { LoadingState } from '../../types'
+import { LoadingState } from '../../../types'
 import { addWords, deleteWords, setWord, setWords } from './actionCreators'
 import {
     AddWordsActionInterface,
     DeleteWordsActionInterface,
+    FetchWordsActionInteface,
     SearchWordsActionInterface,
     WordsActionsType,
 } from './types/actionTypes'
 
-export function* fetchWordsRequest(): any {
+export function* fetchWordsRequest({ page }: FetchWordsActionInteface): any {
     try {
-        const items = yield call(wordsApi.fetchWords)
+        const items = yield call(wordsApi.fetchWords, page)
         yield put(setWords(items))
     } catch (e) {
         yield put(setWordsLoadingState(LoadingState.ERROR))
@@ -21,26 +22,30 @@ export function* fetchWordsRequest(): any {
 export function* addWordsRequest({ payload }: AddWordsActionInterface): any {
     try {
         const item = yield call(wordsApi.addWords, payload)
-        yield call(fetchWordsRequest)
+
         yield put(addWords(item))
     } catch (e) {
-        console.log(e)
+        yield put(setWordsLoadingState(LoadingState.ERROR))
     }
 }
 
 export function* deleteWordsRequest({ id }: DeleteWordsActionInterface): any {
     try {
         yield call(wordsApi.deleteWord, id)
-        yield call(fetchWordsRequest)
+
         yield put(deleteWords(id))
-    } catch (e) {}
+    } catch (e) {
+        yield put(setWordsLoadingState(LoadingState.ERROR))
+    }
 }
 
 export function* searchWordsRequest({ searchString }: SearchWordsActionInterface): any {
     try {
         const item = yield call(wordsApi.searchWords, searchString)
         yield put(setWord(item))
-    } catch (e) {}
+    } catch (e) {
+        yield put(setWordsLoadingState(LoadingState.ERROR))
+    }
 }
 
 export function* wordsSaga() {

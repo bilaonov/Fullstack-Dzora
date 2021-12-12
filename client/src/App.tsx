@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import './App.scss'
+import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header'
+import WordsItem from './components/Words/WordsItem'
 import Home from './Pages/Home/Home'
-import { setAuth } from './store/ducks/user/actionCreators'
 
 const App: React.FC = () => {
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(setAuth())
-    }, [dispatch])
     return (
-        <Switch>
-            <Route strict path="/" component={Home} />
-        </Switch>
+        <div>
+            <Route component={Header}/>
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/list" component={WordsItem} />
+            </Switch>
+            <Route component={Footer}/>
+        </div>
     )
 }
 

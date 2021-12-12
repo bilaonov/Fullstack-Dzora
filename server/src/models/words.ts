@@ -16,16 +16,17 @@ const wordsSchema = new Schema(
         audio: {
             type: String,
         },
-        avatar: {
-            type: String,
-        },
+        verify: {
+            type: Boolean,
+            default: false
+        }
     },
     {
         versionKey: false,
         timestamps: true,
-    }
+    },
 )
-
+wordsSchema.index({ verify: 'text' })
 wordsSchema.index({ word: 'text' })
 
 export default model<IWord>('Word', wordsSchema)

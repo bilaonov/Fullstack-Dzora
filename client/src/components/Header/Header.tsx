@@ -26,20 +26,13 @@ const Header: React.FC = () => {
 
     return (
         <div>
-            <header
-                className="header"
-                style={{ top: -scrollValue * 0.3 + 'px' }}
-            >
+            <header className="header" style={{ top: -scrollValue * 0.3 + 'px' }}>
                 <h1>DZORA</h1>
-
                 {data ? (
                     <div className="header__link">
                         <p>
                             {data.name}
-                            <IconButton
-                                aria-label="Example"
-                                onClick={logoutUser}
-                            >
+                            <IconButton aria-label="Example" onClick={logoutUser}>
                                 <ExitToAppIcon />
                             </IconButton>
                         </p>

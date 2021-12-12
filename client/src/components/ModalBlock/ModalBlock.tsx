@@ -1,8 +1,5 @@
 import React from 'react'
 import '../../App.scss'
-import Dialog from '@material-ui/core/Dialog'
-import Button from '@mui/material/Button'
-import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
@@ -42,17 +39,13 @@ export const ModalBlock: React.FC<ModalBlockProps> = ({
         <Modal
             open={visible}
             onClose={onClose}
-            className='modal'
+            className="modal"
             aria-labelledby="form-dialog-title"
         >
             <Box sx={style}>
                 <div id="form-block">
                     <DialogTitle>{title}</DialogTitle>
-                    <IconButton
-                        onClick={onClose}
-                        color="secondary"
-                        aria-label="close"
-                    >
+                    <IconButton onClick={onClose} color="secondary" aria-label="close">
                         <CloseIcon style={{ fontSize: 26 }} color="secondary" />
                     </IconButton>
                 </div>

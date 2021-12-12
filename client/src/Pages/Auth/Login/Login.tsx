@@ -11,28 +11,14 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { login } from '../../../store/ducks/user/actionCreators'
 
-
 interface LoginModalProps {
     open: boolean
     onClose: () => void
 }
 
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    borderRadius: '4px ',
-    boxShadow: 24,
-    p: 4,
-}
-
 const Login: React.FC<LoginModalProps> = ({ open, onClose }) => {
-
     const dispatch = useDispatch()
-    
+
     const {
         register,
         handleSubmit,
@@ -68,20 +54,13 @@ const Login: React.FC<LoginModalProps> = ({ open, onClose }) => {
                         variant="standard"
                         type="password"
                         {...register('password')}
-                        helperText={
-                            errors.password ? errors.password.message : ''
-                        }
+                        helperText={errors.password ? errors.password.message : ''}
                         error={!!errors.password}
                     />
                     <Button sx={{ mt: 3, mr: 2 }} variant="contained">
                         Регистрация
                     </Button>
-                    <Button
-                        type="submit"
-                        sx={{ mt: 3 }}
-                        variant="contained"
-                        color="success"
-                    >
+                    <Button type="submit" sx={{ mt: 3 }} variant="contained" color="success">
                         Войти
                     </Button>
                 </Box>

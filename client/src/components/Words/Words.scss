@@ -18,6 +18,10 @@
         padding: 20px;
         letter-spacing: 2px;
     }
+    &__results {
+        display: flex;
+        align-items: center;
+    }
 }
 
 #openModal {

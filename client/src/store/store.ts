@@ -22,6 +22,8 @@ const composeEnhancers =
 const sagaMiddleware = createSagaMiddleware()
 
 export interface RootState {
+    [x: string]: any
+    state: any
     words: WordsState
     user: UserState
 }

@@ -9,12 +9,9 @@ import { useDispatch } from 'react-redux'
 const SearchBlock: React.FC = () => {
     const [clickLang, setClickLang] = useState(false)
     const [text, setText] = useState('')
-    const [error, setError] = useState('')
 
     const placeholder = mediaQuery({
-        'min-768': `Найти слово на ${
-            clickLang === true ? 'дигорском' : 'русском'
-        }`,
+        'min-768': `Найти слово на ${clickLang === true ? 'дигорском' : 'русском'}`,
         'max-768': 'Поиск слова',
     })
 
@@ -24,12 +21,11 @@ const SearchBlock: React.FC = () => {
 
     const dispatch = useDispatch()
 
-    const searchHeandler = (e: any) => {
+    const searchHeandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value)
         if (e.target.value !== '') {
             dispatch(searchWords(e.target.value))
         } else {
-            
             dispatch(searchWords(null))
         }
     }
@@ -39,11 +35,7 @@ const SearchBlock: React.FC = () => {
             <div className="search">
                 <h1>Дигорско-русский онлайн словарь</h1>
                 <form className="search-block">
-                    <img
-                        className="search-block__img"
-                        src={Searchimg}
-                        alt="img"
-                    />
+                    <img className="search-block__img" src={Searchimg} alt="img" />
                     <input
                         name="text"
                         value={text}
@@ -52,17 +44,9 @@ const SearchBlock: React.FC = () => {
                         type="text"
                         placeholder={placeholder}
                     />
-                    <div
-                        className="search-block__text-reverse"
-                        onClick={toggleClick}
-                    >
+                    <div className="search-block__text-reverse" onClick={toggleClick}>
                         <span>{clickLang === true ? 'ДИГ' : 'РУС'}</span>
-                        <img
-                            src={imgplaces}
-                            width="15px"
-                            height="15px"
-                            alt="img"
-                        />
+                        <img src={imgplaces} width="15px" height="15px" alt="img" />
                         <span>{clickLang !== true ? 'ДИГ' : 'РУС'}</span>
                     </div>
                 </form>

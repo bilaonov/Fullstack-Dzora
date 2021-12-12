@@ -1,4 +1,4 @@
-import { LoadingState } from '../../types'
+import { LoadingState } from '../../../types/index'
 import {
     SetWordsActionInterface,
     WordsActionsType,
@@ -12,7 +12,7 @@ import {
 
 import { IWords, WordsState } from './types/state'
 
-export const setWords = (payload: WordsState['items']): SetWordsActionInterface => ({
+export const setWords = (payload: WordsState['data']): SetWordsActionInterface => ({
     type: WordsActionsType.SET_WORDS,
     payload,
 })
@@ -30,8 +30,9 @@ export const addWords = (payload: {
     payload,
 })
 
-export const fetchWords = (): FetchWordsActionInteface => ({
+export const fetchWords = (page: number): FetchWordsActionInteface => ({
     type: WordsActionsType.FETCH_WORDS,
+    page,
 })
 
 export const setWordsLoadingStatus = (

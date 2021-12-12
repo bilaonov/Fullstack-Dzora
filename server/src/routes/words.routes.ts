@@ -2,13 +2,11 @@ import Router, { Request, Response } from 'express'
 import { IWord } from '../@types/index'
 import Word from '../models/words'
 
-import { paginationResults } from './pagination'
-
 const router = Router()
 
 router.post('/words', async (req: Request, res: Response): Promise<void> => {
     try {
-        const { word, translate, voice, avatar } = req.body
+        const { word, translate, audio } = req.body
         const uniqWord = await Word.findOne({ word })
         const uniqTranlate = await Word.findOne({ translate })
 
@@ -26,8 +24,7 @@ router.post('/words', async (req: Request, res: Response): Promise<void> => {
         const words: IWord = new Word({
             word,
             translate,
-            voice,
-            avatar
+            audio,
         })
         await words.save()
 
@@ -37,30 +34,26 @@ router.post('/words', async (req: Request, res: Response): Promise<void> => {
     }
 })
 
-router.get('/words', paginationResults(Word), async (req: Request, res: Response): Promise<void> => {
-    try {
-        const words = await Word.find().count().sort({ date: -1 })
-
-        if (!words) {
-            res.status(404).json({ message: 'Посты не найдены' })
-        }
-
-        res.json(res.paginationResults)
-    } catch (e) {
-        console.log(e)
-        res.send({ message: 'Server error' })
-    }
-})
-
 router.get('/words', async (req: Request, res: Response): Promise<void> => {
     try {
-        const words = await Word.find().count().sort({ date: -1 })
+        const limit = 15
+        //@ts-ignore
+        const page = +req.query.page || 1
+        const skip = limit * page - limit
+        const totalCount = await Word.countDocuments().exec()
+        const last_page = Math.ceil(totalCount / limit) || 0;
+        const words = await Word.find().skip(skip).limit(limit).exec()
 
         if (!words) {
             res.status(404).json({ message: 'Посты не найдены' })
         }
 
-        res.json(words)
+        res.json({
+            total: totalCount,
+            data: words,
+            current_page: page,
+            last_page: last_page
+        })
     } catch (e) {
         console.log(e)
         res.send({ message: 'Server error' })

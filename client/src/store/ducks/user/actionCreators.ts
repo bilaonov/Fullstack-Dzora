@@ -1,4 +1,4 @@
-import { LoadingState } from '../../types'
+import { LoadingState } from '../../../types'
 import {
     LoginData,
     LoginSuccessActionInterface,

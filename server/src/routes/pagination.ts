@@ -2,11 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { Results } from '../@types'
 
 export function paginationResults(model: any) {
-    return async (
-        req: Request,
-        res: Response,
-        next: NextFunction
-    ): Promise<void> => {
+    return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         //@ts-ignore
         const page = parseInt(req.query.page)
         const limit = 10
@@ -16,7 +12,7 @@ export function paginationResults(model: any) {
 
         const results = {} as Results
 
-        if (endIndex < (await model.countDocuments().exec())) {
+        if (endIndex < totalCount) {
             results.next = {
                 page: page + 1,
                 limit: limit,
@@ -32,11 +28,7 @@ export function paginationResults(model: any) {
             }
         }
         try {
-            results.results = await model
-                .find()
-                .limit(limit)
-                .skip(startIndex)
-                .exec()
+            results.results = await model.find().limit(limit).skip(startIndex).exec()
             res.paginationResults = results
 
             next()
