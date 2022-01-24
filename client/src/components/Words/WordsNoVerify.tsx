@@ -21,7 +21,6 @@ import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
 import Button from '@mui/material/Button'
-import { RootState } from '../../store/store'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -45,16 +44,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const WordsNoVerify = () => {
     const dispatch = useDispatch()
+
+    const [verif] = useState<boolean>(true)
+    const [page, setPage] = useState<number>(1)
+
     const data = useSelector(selectWordsNoVerify)
-    const [verif, setVerif] = useState(true)
     const last_page = useSelector(lastPageWords)
     const current_page = useSelector(currentPageWords)
-    const [page, setPage] = useState(1)
+
     const handleChange = (event: any, value: any) => {
         setPage(value)
     }
 
-    const handleClick = (id: any, verify: any) => {
+    const handleClick = (id: string) => {
         const data = {
             verify: verif,
         }
@@ -63,7 +65,7 @@ const WordsNoVerify = () => {
 
     useEffect(() => {
         dispatch(fetchWords(page))
-    }, [page])
+    }, [dispatch, page])
 
     return (
         <>
@@ -94,7 +96,7 @@ const WordsNoVerify = () => {
                                         Отменить
                                     </Button>
                                     <Button
-                                        onClick={() => handleClick(item._id, item.verify)}
+                                        onClick={() => handleClick(item._id)}
                                         size="small"
                                         variant="contained"
                                         color="success"

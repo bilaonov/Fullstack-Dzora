@@ -4,7 +4,6 @@ import WordsNoVerify from './WordsNoVerify'
 import WordsVerify from './WordsVerify'
 
 const WordsItem = () => {
-    const [open, setOpen] = React.useState(false)
     const [visible, setVisible] = useState(false)
 
     const handleClickNoVerify = (): void => {

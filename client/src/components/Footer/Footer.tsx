@@ -6,15 +6,15 @@ const Footer = () => {
     return (
         <div className="footer">
             <div className="footer__item">
-                <a href="">
+                <a href="/">
                     <img src={instagram} alt="" /> INSTAGRAM
                 </a>
-                <a href="">
+                <a href="/">
                     TELEGRAM
                     <img src={telegram} alt="" />
                 </a>
             </div>
-            <div className='footer__info'>
+            <div className="footer__info">
                 <p>
                     © 2021 <br />
                     Bilaonoff

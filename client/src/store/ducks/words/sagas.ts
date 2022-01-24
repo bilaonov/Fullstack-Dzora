@@ -1,7 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { wordsApi } from '../../../api/wordsApi'
-import { LoadingState } from '../../../types'
-import { addWords, deleteWords, setWord, setWords } from './actionCreators'
+import { setWord, setWords } from './actionCreators'
 import {
     AddWordsActionInterface,
     DeleteWordsActionInterface,
@@ -51,6 +50,3 @@ export function* wordsSaga() {
     yield takeLatest(WordsActionsType.SEARCH_WORDS, searchWordsRequest)
 }
 
-function setWordsLoadingState(ERROR: LoadingState): any {
-    throw new Error('Function not implemented.')
-}

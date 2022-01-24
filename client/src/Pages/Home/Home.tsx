@@ -1,5 +1,4 @@
-//@ts-nocheck
-import React, { Suspense } from 'react'
+import React from 'react'
 import '../../App.scss'
 import Footer from '../../components/Footer/Footer'
 

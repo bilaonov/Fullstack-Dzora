@@ -15,10 +15,9 @@ import Button from '@mui/material/Button'
 import WordsSearch from '../Words/WordsSearch'
 
 const Main = () => {
-    const [clickLang, setClickLang] = useState(false)
-    const [text, setText] = useState('')
-
-    const [visibleModal, setVisibleModal] = useState(false)
+    const [clickLang, setClickLang] = useState<boolean>(false)
+    const [text, setText] = useState<string>('')
+    const [visibleModal, setVisibleModal] = useState<boolean>(false)
 
     const handleClickOpenWordsAdd = (): void => {
         setVisibleModal(true)

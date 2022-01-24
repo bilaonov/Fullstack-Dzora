@@ -7,7 +7,6 @@ import {
     lastPageWords,
     selectWordsVerify,
 } from '../../store/ducks/words/selectors'
-import { RootState } from '../../store/store'
 
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -20,7 +19,6 @@ import Paper from '@mui/material/Paper'
 import SearchIcon from '@mui/icons-material/Search'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
-
 import Button from '@mui/material/Button'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -43,24 +41,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }))
 
-const WordsVerify = () => {
+const WordsVerify: React.FC = () => {
     const dispatch = useDispatch()
+
+    const [page, setPage] = useState<number>(1)
+
     const data = useSelector(selectWordsVerify)
     const last_page = useSelector(lastPageWords)
     const current_page = useSelector(currentPageWords)
 
-    const [page, setPage] = useState(1)
     const handleChange = (event: any, value: any) => {
         setPage(value)
     }
 
-    const handleVerify = () => {
-        
-    }
-
     useEffect(() => {
         dispatch(fetchWords(page))
-    }, [page])
+    }, [dispatch, page])
 
     return (
         <>

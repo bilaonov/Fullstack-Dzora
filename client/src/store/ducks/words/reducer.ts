@@ -28,11 +28,11 @@ const wordsReducer = (state = initialState, action: WordsActions) => {
             return {
                 ...state,
                 data: action.payload,
-                isLoading: LoadingState.SUCCESS
+                isLoading: LoadingState.SUCCESS,
             }
         case WordsActionsType.DELETE_WORDS:
             return {
-                ...state
+                ...state,
             }
         default:
             return state
@@ -40,29 +40,3 @@ const wordsReducer = (state = initialState, action: WordsActions) => {
 }
 
 export default wordsReducer
-
-// export const wordsReducer = produce((draft: Draft<WordsState>, action: WordsActions) => {
-//     switch (action.type) {
-//         case WordsActionsType.SET_WORDS:
-
-//             draft.data = action.payload
-//             draft.loadingState = LoadingState.SUCCESS
-//             break
-//         case WordsActionsType.SET_WORD:
-//             draft.searchWords = action.payload
-//             draft.loadingState = LoadingState.SUCCESS
-//             break
-//         case WordsActionsType.FETCH_WORDS:
-//             draft.data = []
-//             draft.loadingState = LoadingState.SUCCESS
-//             break
-//         case WordsActionsType.SET_LOADING_STATE:
-//             draft.loadingState = action.payload
-//             break
-//         case WordsActionsType.ADD_WORDS:
-//             draft.loadingState = LoadingState.SUCCESS
-//             break
-//         default:
-//             break
-//     }
-// }, initialWordsState)

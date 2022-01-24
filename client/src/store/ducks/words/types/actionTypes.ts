@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 import { LoadingState } from '../../../../types'
-import { IWords, WordsState } from './state'
+import { WordsState } from './state'
 
 export enum WordsActionsType {
     SET_WORDS = 'words/SET_WORDS',
@@ -44,7 +44,6 @@ export interface VerifyWordsActionInterface extends Action<WordsActionsType> {
     type: WordsActionsType.VERIFY_WORDS
     id: string
     payload: {
-        
         verify: boolean
     }
 }

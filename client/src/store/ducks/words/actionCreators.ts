@@ -11,7 +11,7 @@ import {
     VerifyWordsActionInterface,
 } from './types/actionTypes'
 
-import { IWords, WordsState } from './types/state'
+import { WordsState } from './types/state'
 
 export const setWords = (payload: WordsState['data']): SetWordsActionInterface => ({
     type: WordsActionsType.SET_WORDS,

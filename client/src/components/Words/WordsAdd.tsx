@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { addWordsSchema } from '../../services/helpers/validation'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from 'react-hook-form'
+import React, { useState } from 'react'
+import { addWords } from '../../store/ducks/words/actionCreators'
+import { useDispatch } from 'react-redux'
+import { ModalBlock } from '../ModalBlock/ModalBlock'
 
-import './Words.scss'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
-import { addWords, fetchWords } from '../../store/ducks/words/actionCreators'
-import { useDispatch, useSelector } from 'react-redux'
-import { ModalBlock } from '../ModalBlock/ModalBlock'
 
 interface AddWordsProps {
     open: boolean
@@ -19,19 +15,14 @@ interface AddWordsProps {
 const WordsAdd: React.FC<AddWordsProps> = ({ open, onClose }) => {
     const [word, setWord] = useState<string>('')
     const [translate, setTranslate] = useState<string>('')
-    const [error, setError] = useState('')
 
     const dispatch = useDispatch()
 
     const submitAddWord: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
-        if (!word || !translate) {
-            setError('Пожалуйста заполните все поля')
-        } else {
-            dispatch(addWords({ translate, word }))
-            setWord('')
-            setTranslate('')
-        }
+        dispatch(addWords({ translate, word }))
+        setWord('')
+        setTranslate('')
     }
 
     return (
