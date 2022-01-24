@@ -16,5 +16,4 @@ export interface WordsState {
     current_page: number
     last_page: number
     isLoading: LoadingState
-    searchWords: IWords[] | null
 }

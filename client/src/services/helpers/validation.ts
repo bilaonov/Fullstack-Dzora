@@ -14,3 +14,10 @@ export const registerSchema = yup.object().shape({
         .oneOf([yup.ref('password'), null], 'Пароли не совпадают')
         .required('Обязательное поле'),
 })
+
+
+export const addWordsSchema = yup.object().shape({
+    word: yup.string().required('Введите слово'),
+    translate: yup.string().required('Введите слово')
+
+})

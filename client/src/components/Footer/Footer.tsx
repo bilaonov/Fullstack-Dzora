@@ -1,27 +1,26 @@
 import React from 'react'
-import './Footer.scss'
-import instagramm from '../../assets/instagram logo.png'
-import vk from '../../assets/vk_icon.png'
-import telegram from '../../assets/telegram.png'
+import instagram from '../../assets/insta.png'
+import telegram from '../../assets/telegra.png'
 
-const Footer: React.FC = () => {
+const Footer = () => {
     return (
-        <div>
-            <footer className="footer">
-                <div className="footer__question-block">
-                    <h6>Вопросы</h6>
-                    <p>По вопросам разработки сайта пишите Bilaonoff@mail.ru</p>
-                </div>
-
-                <div className="footer__social-block">
-                    <p className="social-block-text">Присоединяйтесь</p>
-                    <div className="social-block-link">
-                        <img src={instagramm} alt="img" />
-                        <img src={vk} alt="img" />
-                        <img src={telegram} alt="img" />
-                    </div>
-                </div>
-            </footer>
+        <div className="footer">
+            <div className="footer__item">
+                <a href="">
+                    <img src={instagram} alt="" /> INSTAGRAM
+                </a>
+                <a href="">
+                    TELEGRAM
+                    <img src={telegram} alt="" />
+                </a>
+            </div>
+            <div className='footer__info'>
+                <p>
+                    © 2021 <br />
+                    Bilaonoff
+                </p>
+                <p>РАЗРАБОТКА САЙТОВ И ПОДДЕРЖКИ ПИСАТЬ НА ПОЧТУ AMIRANBILAONOV@GMAIL.COM</p>
+            </div>
         </div>
     )
 }

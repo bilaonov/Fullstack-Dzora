@@ -9,7 +9,7 @@ router.get('/:searchString', async (req: Request, res: Response): Promise<void> 
         const query = req.params.searchString
         const regEx = new RegExp(query, 'i')
 
-        const word = await Word.find({ word: regEx, verify: false })
+        const word = await Word.find({ word: regEx, verify: true })
         if (!word)
             res.status(400).json({
                 msg: 'Post not found',

@@ -9,22 +9,30 @@ const initialState: WordsState = {
     current_page: 0,
     last_page: 0,
     isLoading: LoadingState.NEVER,
-    searchWords: null,
 }
 
 const wordsReducer = (state = initialState, action: WordsActions) => {
     switch (action.type) {
+        case WordsActionsType.FETCH_WORDS:
+            return {
+                data: [],
+                isLoading: LoadingState.LOADING,
+            }
         case WordsActionsType.SET_WORDS:
             return {
                 ...state,
                 ...action.payload,
                 isLoading: LoadingState.SUCCESS,
             }
-        case WordsActionsType.FETCH_WORDS:
+        case WordsActionsType.SET_WORD:
             return {
                 ...state,
-                data: [],
-                isLoading: LoadingState.LOADING,
+                data: action.payload,
+                isLoading: LoadingState.SUCCESS
+            }
+        case WordsActionsType.DELETE_WORDS:
+            return {
+                ...state
             }
         default:
             return state

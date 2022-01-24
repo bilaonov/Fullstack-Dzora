@@ -7,6 +7,7 @@ import {
     DeleteWordsActionInterface,
     FetchWordsActionInteface,
     SearchWordsActionInterface,
+    VerifyWordsActionInterface,
     WordsActionsType,
 } from './types/actionTypes'
 
@@ -14,42 +15,37 @@ export function* fetchWordsRequest({ page }: FetchWordsActionInteface): any {
     try {
         const items = yield call(wordsApi.fetchWords, page)
         yield put(setWords(items))
-    } catch (e) {
-        yield put(setWordsLoadingState(LoadingState.ERROR))
-    }
+    } catch (e) {}
 }
 
 export function* addWordsRequest({ payload }: AddWordsActionInterface): any {
     try {
-        const item = yield call(wordsApi.addWords, payload)
-
-        yield put(addWords(item))
-    } catch (e) {
-        yield put(setWordsLoadingState(LoadingState.ERROR))
-    }
+        yield call(wordsApi.addWords, payload)
+    } catch (e) {}
 }
 
 export function* deleteWordsRequest({ id }: DeleteWordsActionInterface): any {
     try {
         yield call(wordsApi.deleteWord, id)
+    } catch (e) {}
+}
 
-        yield put(deleteWords(id))
-    } catch (e) {
-        yield put(setWordsLoadingState(LoadingState.ERROR))
-    }
+export function* verifyWordsRequest({ id, payload }: VerifyWordsActionInterface): any {
+    try {
+        yield call(wordsApi.verifyWords, id, payload)
+    } catch (e) {}
 }
 
 export function* searchWordsRequest({ searchString }: SearchWordsActionInterface): any {
     try {
-        const item = yield call(wordsApi.searchWords, searchString)
-        yield put(setWord(item))
-    } catch (e) {
-        yield put(setWordsLoadingState(LoadingState.ERROR))
-    }
+        const items = yield call(wordsApi.searchWords, searchString)
+        yield put(setWord(items))
+    } catch (e) {}
 }
 
 export function* wordsSaga() {
     yield takeLatest(WordsActionsType.FETCH_WORDS, fetchWordsRequest)
+    yield takeLatest(WordsActionsType.VERIFY_WORDS, verifyWordsRequest)
     yield takeLatest(WordsActionsType.ADD_WORDS, addWordsRequest)
     yield takeLatest(WordsActionsType.DELETE_WORDS, deleteWordsRequest)
     yield takeLatest(WordsActionsType.SEARCH_WORDS, searchWordsRequest)

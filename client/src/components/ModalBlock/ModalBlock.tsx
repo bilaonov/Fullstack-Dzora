@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react'
 import '../../App.scss'
 import DialogTitle from '@material-ui/core/DialogTitle'
@@ -20,9 +21,9 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    borderRadius: '4px ',
+    borderRadius: '4px',
     boxShadow: 24,
-    p: 4,
+    p: 3,
 }
 
 export const ModalBlock: React.FC<ModalBlockProps> = ({
@@ -44,9 +45,9 @@ export const ModalBlock: React.FC<ModalBlockProps> = ({
         >
             <Box sx={style}>
                 <div id="form-block">
-                    <DialogTitle>{title}</DialogTitle>
+                    <DialogTitle >{title}</DialogTitle>
                     <IconButton onClick={onClose} color="secondary" aria-label="close">
-                        <CloseIcon style={{ fontSize: 26 }} color="secondary" />
+                        <CloseIcon style={{ fontSize: 20 }} color="secondary" />
                     </IconButton>
                 </div>
                 <div>{children}</div>

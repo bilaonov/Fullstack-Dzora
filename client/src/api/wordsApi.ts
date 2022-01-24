@@ -11,15 +11,19 @@ export const wordsApi = {
         return data.data
     },
     async addWords(payload: { word: string; translate: string }): Promise<IWords[]> {
-        const { data } = await axios.post<Response<IWords[]>>('/api/words/', payload)
+        const { data } = await axios.post<Response<IWords[]>>(`/api/words/`, payload)
+        return data.data
+    },
+    async verifyWords(id: string, payload: { verify: boolean }) {
+        const data = await axios.put(`/api/words/${id}`, payload)
         return data.data
     },
     async searchWords(searchString: string | null) {
-        const data = await axios.get('/api/words/search/' + searchString)
+        const data = await axios.get(`/api/words/search/${searchString}`)
         return data.data
     },
     async deleteWord(id: string): Promise<IWords[]> {
-        const { data } = await axios.delete<Response<IWords[]>>('/api/words/' + id)
+        const { data } = await axios.delete<Response<IWords[]>>(`/api/words/${id}`)
         return data.data
     },
 }

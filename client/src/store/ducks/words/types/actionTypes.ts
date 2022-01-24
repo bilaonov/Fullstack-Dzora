@@ -14,6 +14,7 @@ export enum WordsActionsType {
     START_RECORDING = 'words/START_RECORDING',
     STOP_RECORDING = 'words/STOP_RECORDING',
     DELETE_RECORDING = 'words/DELETE_RECORDING',
+    VERIFY_WORDS = 'words/VERIFY_WORDS',
 }
 
 export interface SetWordsActionInterface extends Action<WordsActionsType> {
@@ -23,7 +24,7 @@ export interface SetWordsActionInterface extends Action<WordsActionsType> {
 
 export interface SetWordActionInterface extends Action<WordsActionsType> {
     type: WordsActionsType.SET_WORD
-    payload: IWords[] | null
+    payload: WordsState['data'] | null
 }
 
 export interface FetchWordsActionInteface extends Action<WordsActionsType> {
@@ -36,6 +37,15 @@ export interface AddWordsActionInterface extends Action<WordsActionsType> {
     payload: {
         word: string
         translate: string
+    }
+}
+
+export interface VerifyWordsActionInterface extends Action<WordsActionsType> {
+    type: WordsActionsType.VERIFY_WORDS
+    id: string
+    payload: {
+        
+        verify: boolean
     }
 }
 

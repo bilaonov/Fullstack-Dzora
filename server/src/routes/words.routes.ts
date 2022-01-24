@@ -36,13 +36,13 @@ router.post('/words', async (req: Request, res: Response): Promise<void> => {
 
 router.get('/words', async (req: Request, res: Response): Promise<void> => {
     try {
-        const limit = 15
+        const limit = 10
         //@ts-ignore
         const page = +req.query.page || 1
         const skip = limit * page - limit
         const totalCount = await Word.countDocuments().exec()
-        const last_page = Math.ceil(totalCount / limit) || 0;
-        const words = await Word.find().skip(skip).limit(limit).exec()
+        const last_page = Math.ceil(totalCount / limit) || 0
+        const words = await Word.find().sort({ verify: 1 }).skip(skip).limit(limit).exec()
 
         if (!words) {
             res.status(404).json({ message: 'Посты не найдены' })
@@ -52,7 +52,7 @@ router.get('/words', async (req: Request, res: Response): Promise<void> => {
             total: totalCount,
             data: words,
             current_page: page,
-            last_page: last_page
+            last_page: last_page,
         })
     } catch (e) {
         console.log(e)
@@ -76,16 +76,16 @@ router.get('/words/:id', async (req: Request, res: Response): Promise<void> => {
 
 router.put('/words/:id', async (req: Request, res: Response): Promise<void> => {
     try {
-        const { word, translate } = req.body
+        const { word, translate, verify } = req.body
 
-        const updateWord = { word, translate }
+        const update = { word, translate, verify }
         let words: any = await Word.findById(req.params.id)
 
         if (!words) {
             res.status(404).json({ message: 'Слова не найдены' })
         }
 
-        words = await Word.findByIdAndUpdate(req.params.id, { $set: updateWord }, { new: true })
+        words = await Word.findByIdAndUpdate(req.params.id, { $set: update }, { new: true })
         await words.save()
 
         res.json(words)

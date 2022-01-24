@@ -8,6 +8,7 @@ import {
     AddWordsActionInterface,
     SearchWordsActionInterface,
     SetWordActionInterface,
+    VerifyWordsActionInterface,
 } from './types/actionTypes'
 
 import { IWords, WordsState } from './types/state'
@@ -17,7 +18,7 @@ export const setWords = (payload: WordsState['data']): SetWordsActionInterface =
     payload,
 })
 
-export const setWord = (payload: IWords[] | null): SetWordActionInterface => ({
+export const setWord = (payload: WordsState['data']): SetWordActionInterface => ({
     type: WordsActionsType.SET_WORD,
     payload,
 })
@@ -52,6 +53,15 @@ export const searchWords = (searchString: string | null): SearchWordsActionInter
     searchString,
 })
 
+export const verifyWords = (
+    id: string,
+    payload: { verify: boolean },
+): VerifyWordsActionInterface => ({
+    type: WordsActionsType.VERIFY_WORDS,
+    id,
+    payload,
+})
+
 export type WordsActions =
     | SetWordActionInterface
     | AddWordsActionInterface
@@ -59,4 +69,5 @@ export type WordsActions =
     | SetWordsLoadingStatusActionInteface
     | SetWordsActionInterface
     | DeleteWordsActionInterface
+    | VerifyWordsActionInterface
     | SearchWordsActionInterface

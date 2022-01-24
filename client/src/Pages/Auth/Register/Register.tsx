@@ -41,7 +41,7 @@ const Register: React.FC<RegisterModalProps> = ({ open, onClose }) => {
     return (
         <ModalBlock onClose={onClose} visible={open} title="Регистрация">
             <form id="form" onSubmit={handleSubmit(onSubmit)}>
-                <Box>
+                <div>
                     <TextField
                         fullWidth
                         label="Введите имя"
@@ -87,15 +87,14 @@ const Register: React.FC<RegisterModalProps> = ({ open, onClose }) => {
                         error={!!errors.password2}
                         {...register('password2')}
                     />
-                    <Box sx={{ display: 'flex' }}>
-                        <Button variant="contained" color="primary" onClick={onClose}>
-                            Назад
-                        </Button>
-                        <Button type="submit" variant="contained" color="success">
-                            Регистрация
-                        </Button>
-                    </Box>
-                </Box>
+
+                    <Button variant="contained" color="primary" onClick={onClose}>
+                        Назад
+                    </Button>
+                    <Button type="submit" variant="contained" color="success">
+                        Регистрация
+                    </Button>
+                </div>
             </form>
         </ModalBlock>
     )
