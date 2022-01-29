@@ -5,6 +5,7 @@ import { UserState } from './types/state'
 
 const initialUserState: UserState = {
     data: null,
+    isAuth: false,
     isLoading: LoadingState.NEVER,
 }
 
@@ -14,6 +15,7 @@ const userReducer = (state = initialUserState, action: UserActions) => {
             return {
                 ...state,
                 data: action.payload,
+                isAuth: true,
                 isLoading: LoadingState.SUCCESS,
             }
         case UserActionType.AUTH_LOADING_STATUS:
@@ -25,7 +27,6 @@ const userReducer = (state = initialUserState, action: UserActions) => {
             return {
                 ...state,
                 data: null,
-
                 isLoading: LoadingState.SUCCESS,
             }
         default:

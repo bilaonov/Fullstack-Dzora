@@ -18,8 +18,8 @@ export const wordsApi = {
         const data = await axios.put(`/api/words/${id}`, payload)
         return data.data
     },
-    async searchWords(searchString: string | null) {
-        const data = await axios.get(`/api/words/search/${searchString}`)
+    async searchWords(searchString: string | null, lang: string) {
+        const data = await axios.get(`/api/words/search/${lang}/${searchString}`)
         return data.data
     },
     async deleteWord(id: string): Promise<IWords[]> {

@@ -4,26 +4,14 @@ import '../../App.scss'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
-import Box from '@mui/material/Box'
-import Modal from '@mui/material/Modal'
+import Dialog from '@material-ui/core/Dialog'
+import DialogContent from '@material-ui/core/DialogContent'
 
 interface ModalBlockProps {
     title?: string
     children: React.ReactNode
     visible?: boolean
     onClose: () => void
-}
-
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    borderRadius: '4px',
-    boxShadow: 24,
-    p: 3,
 }
 
 export const ModalBlock: React.FC<ModalBlockProps> = ({
@@ -37,21 +25,24 @@ export const ModalBlock: React.FC<ModalBlockProps> = ({
     }
 
     return (
-        <Modal
+        <Dialog
+            fullWidth={true}
+            scroll={'body'}
+            maxWidth={'sm'}
             open={visible}
             onClose={onClose}
-            className="modal"
+            className="dialog"
             aria-labelledby="form-dialog-title"
         >
-            <Box sx={style}>
-                <div id="form-block">
-                    <DialogTitle >{title}</DialogTitle>
-                    <IconButton onClick={onClose} color="secondary" aria-label="close">
-                        <CloseIcon style={{ fontSize: 20 }} color="secondary" />
+            <DialogTitle>
+                <div className="dialog__header">
+                    <span>{title}</span>
+                    <IconButton onClick={onClose}  aria-label="close">
+                        <CloseIcon style={{ fontSize: 20 }} />
                     </IconButton>
                 </div>
-                <div>{children}</div>
-            </Box>
-        </Modal>
+                <DialogContent dividers className='dialog__content'>{children}</DialogContent>
+            </DialogTitle>
+        </Dialog>
     )
 }

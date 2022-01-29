@@ -5,6 +5,7 @@ import { WordsState } from './types/state'
 
 const initialState: WordsState = {
     data: [],
+    results: null,
     total: 0,
     current_page: 0,
     last_page: 0,
@@ -27,12 +28,17 @@ const wordsReducer = (state = initialState, action: WordsActions) => {
         case WordsActionsType.SET_WORD:
             return {
                 ...state,
-                data: action.payload,
-                isLoading: LoadingState.SUCCESS,
+                data: [],
+                results: action.payload,
+            }
+        case WordsActionsType.SET_LOADING_STATE:
+            return {
+                isLoading: action.payload,
             }
         case WordsActionsType.DELETE_WORDS:
             return {
                 ...state,
+                isLoading: LoadingState.SUCCESS,
             }
         default:
             return state

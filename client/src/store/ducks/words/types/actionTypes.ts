@@ -9,7 +9,7 @@ export enum WordsActionsType {
     ADD_WORDS = 'words/ADD_WORDS',
     SET_WORD = 'words/SET_WORD',
     SEARCH_WORDS = 'words/SEARCH_WORDS',
-    DELETE_WORDS = 'DELETE_WORDS',
+    DELETE_WORDS = 'words/DELETE_WORDS',
     SET_RECORDING = 'words/SET_RECORDING',
     START_RECORDING = 'words/START_RECORDING',
     STOP_RECORDING = 'words/STOP_RECORDING',
@@ -51,6 +51,7 @@ export interface VerifyWordsActionInterface extends Action<WordsActionsType> {
 export interface SearchWordsActionInterface extends Action<WordsActionsType> {
     type: WordsActionsType.SEARCH_WORDS
     searchString: string | null
+    lang: string
 }
 
 export interface DeleteWordsActionInterface extends Action<WordsActionsType> {
@@ -78,3 +79,4 @@ export interface SetWordsLoadingStatusActionInteface extends Action<WordsActions
     type: WordsActionsType.SET_LOADING_STATE
     payload: LoadingState
 }
+

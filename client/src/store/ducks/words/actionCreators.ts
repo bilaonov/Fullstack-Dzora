@@ -9,6 +9,7 @@ import {
     SearchWordsActionInterface,
     SetWordActionInterface,
     VerifyWordsActionInterface,
+
 } from './types/actionTypes'
 
 import { WordsState } from './types/state'
@@ -36,6 +37,7 @@ export const fetchWords = (page: number): FetchWordsActionInteface => ({
     page,
 })
 
+
 export const setWordsLoadingStatus = (
     payload: LoadingState,
 ): SetWordsLoadingStatusActionInteface => ({
@@ -48,9 +50,10 @@ export const deleteWords = (id: string): DeleteWordsActionInterface => ({
     id,
 })
 
-export const searchWords = (searchString: string | null): SearchWordsActionInterface => ({
+export const searchWords = (searchString: string | null, lang : string): SearchWordsActionInterface => ({
     type: WordsActionsType.SEARCH_WORDS,
     searchString,
+    lang
 })
 
 export const verifyWords = (

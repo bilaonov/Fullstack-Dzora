@@ -48,6 +48,7 @@ const Login: React.FC<LoginModalProps> = ({ open, onClose }) => {
                         error={!!errors.email}
                     />
                     <TextField
+                        sx={{ mt: 2 }}
                         fullWidth
                         id="standard-textarea"
                         label="Введите пароль"
@@ -58,10 +59,14 @@ const Login: React.FC<LoginModalProps> = ({ open, onClose }) => {
                         helperText={errors.password ? errors.password.message : ''}
                         error={!!errors.password}
                     />
-                    <Button sx={{ mt: 3, mr: 2 }} variant="contained">
-                        Регистрация
-                    </Button>
-                    <Button type="submit" sx={{ mt: 3 }} variant="contained" color="success">
+
+                    <Button
+                        id="btn_add"
+                        type="submit"
+                        
+                        variant="contained"
+                        color="success"
+                    >
                         Войти
                     </Button>
                 </Box>

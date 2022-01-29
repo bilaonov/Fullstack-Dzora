@@ -12,6 +12,7 @@ export interface IWords {
 
 export interface WordsState {
     data: IWords[]
+    results: IWords[] | null
     total: number
     current_page: number
     last_page: number

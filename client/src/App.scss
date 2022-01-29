@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ruthie&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@300;400;500&display=swap');
+@import 'react-notifications/lib/notifications.css';
 
 * {
     margin: 0;
@@ -119,6 +120,7 @@ body {
         }
 
         &__form {
+            
             margin-top: 50px;
             display: flex;
             max-width: 800px;
@@ -135,6 +137,7 @@ body {
                 max-width: 800px;
                 color: black;
                 border: none;
+                text-transform: uppercase;
                 text-align: left;
                 outline: none;
                 border-radius: 25px 0 0 25px;
@@ -181,6 +184,9 @@ body {
                 text-align: left;
                 font-size: 20px;
                 color: #000;
+                display: flex;
+                align-items: center;
+                width: 90%;
                 text-transform: uppercase;
                 font-weight: 300;
                 font-family: Cormorant Unicase;
@@ -196,6 +202,10 @@ body {
                 :last-child {
                     border-bottom: none;
                 }
+            }
+            &__itemsIcon {
+                display: flex;
+                align-items: center;
             }
             img {
                 margin-left: 20px;
@@ -215,6 +225,7 @@ body {
     &__infoImage {
         margin-top: 60px;
         margin-right: 0;
+        display: flex;
     }
 
     &__infoTitle {
@@ -232,17 +243,17 @@ body {
         margin-top: 60px;
         font-style: normal;
         font-weight: 300;
-        font-size: 24px;
+        font-size: 22px;
         line-height: 30px;
         text-align: center;
     }
 
     &__infoText2 {
-        width: 480px;
-        height: 456px;
+        width: 500px;
+        height: 400px;
         font-style: normal;
         font-weight: 300;
-        font-size: 18px;
+        font-size: 22px;
         line-height: 22px;
         margin-top: 60px;
         margin-left: 0;
@@ -252,15 +263,17 @@ body {
     }
 
     &__infoText3 {
-        width: 630px;
-        height: 460px;
+        width: 600px;
+        height: 400px;
         font-style: normal;
         font-weight: 300;
-        font-size: 18px;
+        font-size: 22px;
         line-height: 22px;
+        margin-left: 43px;
         display: flex;
         align-items: center;
         margin-top: 60px;
+        margin-right: 0;
         color: #000000;
     }
 
@@ -368,6 +381,70 @@ body {
     }
 }
 
+.dialog {
+    height: 100%;
+
+    &__header {
+        font-family: Cormorant Unicase;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__dialog_content {
+        padding: 10px 24px 24px !important;
+    }
+}
+
 #form-block {
     display: flex;
+}
+
+#btn_add {
+    font-family: Cormorant Unicase;
+    margin-top: 30px;
+    height: 40px;
+    width: 120px;
+    background: #1853ed;
+    color: white;
+    &:hover {
+        background: #ffffff;
+        color: rgb(0, 0, 0);
+    }
+}
+
+#text_total {
+    color:rgb(0, 26, 255);
+    text-decoration: underline;
+}
+
+#btn_auth {
+    font-family: Cormorant Unicase;
+    justify-content: center;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 40px;
+    width: 120px;
+    background: #1853ed;
+    color: white;
+    &:hover {
+        background: #ffffff;
+        color: rgb(0, 0, 0);
+    }
+}
+
+#btn_close {
+    font-family: Cormorant Unicase;
+    margin-top: 30px;
+    height: 40px;
+    width: 120px;
+    background-color: #6e6e6e;
+    color: white;
+}
+
+#auth {
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

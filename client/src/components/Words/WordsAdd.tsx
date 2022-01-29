@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { addWords } from '../../store/ducks/words/actionCreators'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { ModalBlock } from '../ModalBlock/ModalBlock'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
+import Alert from '@mui/material/Alert'
+import Stack from '@mui/material/Stack'
+import { wordsLoadingStatus } from '../../store/ducks/words/selectors'
+import { LoadingState } from '../../types'
 
 interface AddWordsProps {
     open: boolean
@@ -32,24 +36,20 @@ const WordsAdd: React.FC<AddWordsProps> = ({ open, onClose }) => {
                     fullWidth
                     value={word}
                     id="standard-textarea"
-                    label="Добавить слово на дигорском"
-                    placeholder="Введите слово на дигорском"
+                    label="Введите слова на дигорском"
                     onChange={(e) => setWord(e.target.value)}
                     variant="standard"
                 />
                 <TextField
+                    sx={{ mt: 2 }}
                     onChange={(e) => setTranslate(e.target.value)}
                     fullWidth
                     value={translate}
                     id="standard-textarea"
-                    label="Добавить слово на русском"
-                    placeholder="Введите слово на русском"
+                    label="Введите слова на русском"
                     variant="standard"
                 />
-                <Button sx={{ mt: 3, mr: 2 }} variant="outlined">
-                    Отменить
-                </Button>
-                <Button type="submit" sx={{ mt: 3 }} variant="contained" color="success">
+                <Button type="submit" id="btn_add" variant="contained" color="success">
                     Добавить
                 </Button>
             </Box>

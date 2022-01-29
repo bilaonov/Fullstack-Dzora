@@ -13,5 +13,6 @@ export interface User {
 
 export interface UserState {
     data: User | null
+    isAuth: boolean
     isLoading: LoadingState
 }
