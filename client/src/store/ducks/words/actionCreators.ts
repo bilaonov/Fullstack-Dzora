@@ -9,10 +9,10 @@ import {
     SearchWordsActionInterface,
     SetWordActionInterface,
     VerifyWordsActionInterface,
-
+    UpdateWordsActionInterface,
 } from './types/actionTypes'
 
-import { WordsState } from './types/state'
+import { WordsData, WordsState } from './types/state'
 
 export const setWords = (payload: WordsState['data']): SetWordsActionInterface => ({
     type: WordsActionsType.SET_WORDS,
@@ -24,19 +24,15 @@ export const setWord = (payload: WordsState['data']): SetWordActionInterface => 
     payload,
 })
 
-export const addWords = (payload: {
-    word: string
-    translate: string
-}): AddWordsActionInterface => ({
+export const addWords = (payload: WordsData): AddWordsActionInterface => ({
     type: WordsActionsType.ADD_WORDS,
     payload,
 })
 
-export const fetchWords = (page: number): FetchWordsActionInteface => ({
+export const fetchWords = (page: number | undefined): FetchWordsActionInteface => ({
     type: WordsActionsType.FETCH_WORDS,
     page,
 })
-
 
 export const setWordsLoadingStatus = (
     payload: LoadingState,
@@ -45,23 +41,40 @@ export const setWordsLoadingStatus = (
     payload,
 })
 
-export const deleteWords = (id: string): DeleteWordsActionInterface => ({
+export const deleteWords = (id: string, page: number): DeleteWordsActionInterface => ({
     type: WordsActionsType.DELETE_WORDS,
     id,
+    page,
 })
 
-export const searchWords = (searchString: string | null, lang : string): SearchWordsActionInterface => ({
+export const searchWords = (
+    searchString: string | null,
+    lang: string,
+): SearchWordsActionInterface => ({
     type: WordsActionsType.SEARCH_WORDS,
     searchString,
-    lang
+    lang,
+})
+
+export const updateWords = (
+    id: string | undefined,
+    page: number | undefined,
+    payload: WordsData,
+): UpdateWordsActionInterface => ({
+    type: WordsActionsType.UPDATE_WORDS,
+    id,
+    page,
+    payload,
 })
 
 export const verifyWords = (
     id: string,
+    page: number,
     payload: { verify: boolean },
 ): VerifyWordsActionInterface => ({
     type: WordsActionsType.VERIFY_WORDS,
     id,
+    page,
     payload,
 })
 

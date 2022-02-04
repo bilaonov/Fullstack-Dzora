@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import instagram from '../../assets/insta.png'
 import telegram from '../../assets/telegra.png'
 
@@ -6,20 +7,20 @@ const Footer = () => {
     return (
         <div className="footer">
             <div className="footer__item">
-                <a href="/">
+                <Link to={'/'}>
                     <img src={instagram} alt="" /> INSTAGRAM
-                </a>
-                <a href="/">
+                </Link>
+                <Link to={'/'}>
                     TELEGRAM
                     <img src={telegram} alt="" />
-                </a>
+                </Link>
             </div>
             <div className="footer__info">
+                <p>ПО ВСЕМ ВОПРОСАМ ПИСАТЬ НА ПОЧТУ BILAONOFF@MAIL.RU</p>
                 <p>
                     © 2021 <br />
                     Bilaonoff
                 </p>
-                <p>РАЗРАБОТКА САЙТОВ И ПОДДЕРЖКИ ПИСАТЬ НА ПОЧТУ AMIRANBILAONOV@GMAIL.COM</p>
             </div>
         </div>
     )

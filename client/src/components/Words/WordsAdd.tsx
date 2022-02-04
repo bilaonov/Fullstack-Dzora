@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { addWords } from '../../store/ducks/words/actionCreators'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { ModalBlock } from '../ModalBlock/ModalBlock'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
-import Alert from '@mui/material/Alert'
-import Stack from '@mui/material/Stack'
-import { wordsLoadingStatus } from '../../store/ducks/words/selectors'
-import { LoadingState } from '../../types'
+import { addWordsSchema } from '../../services/helpers/validation'
+import { WordsData } from '../../store/ducks/words/types/state'
 
 interface AddWordsProps {
     open: boolean
@@ -17,34 +17,39 @@ interface AddWordsProps {
 }
 
 const WordsAdd: React.FC<AddWordsProps> = ({ open, onClose }) => {
-    const [word, setWord] = useState<string>('')
-    const [translate, setTranslate] = useState<string>('')
-
     const dispatch = useDispatch()
 
-    const submitAddWord: React.FormEventHandler<HTMLFormElement> = (e) => {
-        e.preventDefault()
-        dispatch(addWords({ translate, word }))
-        setWord('')
-        setTranslate('')
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(addWordsSchema),
+    })
+    const onSubmit = (data: WordsData) => {
+        dispatch(addWords(data))
+        reset({ word: '', translate: '' })
     }
 
     return (
         <ModalBlock visible={open} onClose={onClose} title="Добавить слово">
-            <Box component="form" onSubmit={submitAddWord}>
+            <Box component="form" onSubmit={handleSubmit(onSubmit)}>
                 <TextField
                     fullWidth
-                    value={word}
                     id="standard-textarea"
                     label="Введите слова на дигорском"
-                    onChange={(e) => setWord(e.target.value)}
+                    {...register('word')}
+                    helperText={errors.word ? errors.word.message : ''}
+                    error={!!errors.word}
                     variant="standard"
                 />
                 <TextField
                     sx={{ mt: 2 }}
-                    onChange={(e) => setTranslate(e.target.value)}
+                    {...register('translate')}
+                    helperText={errors.translate ? errors.translate.message : ''}
+                    error={!!errors.translate}
                     fullWidth
-                    value={translate}
                     id="standard-textarea"
                     label="Введите слова на русском"
                     variant="standard"

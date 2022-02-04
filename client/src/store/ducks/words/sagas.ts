@@ -8,6 +8,7 @@ import {
     DeleteWordsActionInterface,
     FetchWordsActionInteface,
     SearchWordsActionInterface,
+    UpdateWordsActionInterface,
     VerifyWordsActionInterface,
     WordsActionsType,
 } from './types/actionTypes'
@@ -24,30 +25,46 @@ export function* fetchWordsRequest({ page }: FetchWordsActionInteface): any {
 export function* addWordsRequest({ payload }: AddWordsActionInterface): any {
     try {
         yield call(wordsApi.addWords, payload)
-        NotificationManager.success('Слова успешно добавлены на рассмотрение, спасибо!', '', 4000)
+        NotificationManager.success('Слова успешно добавлены на рассмотрение, спасибо!', '', 2000)
     } catch (error: any) {
         if (error.response.status === 400) {
-            NotificationManager.info(error.response.data.message, '', 4000)
+            NotificationManager.info(error.response.data.message, '', 2000)
         }
         yield put(setWordsLoadingStatus(LoadingState.ERROR))
-        NotificationManager.error('Ошибка сервера', '', 4000)
+        NotificationManager.error('Ошибка сервера', '', 2000)
     }
 }
 
-export function* deleteWordsRequest({ id }: DeleteWordsActionInterface): any {
+export function* deleteWordsRequest({ id, page }: DeleteWordsActionInterface): any {
     try {
-        yield call(wordsApi.deleteWord, id)
-        NotificationManager.success('Слова успешно удалены', '', 4000)
+        yield call(wordsApi.deleteWords, id)
+        const items = yield call(wordsApi.fetchWords, page)
+        yield put(setWords(items))
+        NotificationManager.success('Слова успешно удалены', '', 2000)
     } catch (e: any) {
-        NotificationManager.info(e.response.data.message, '', 4000)
+        NotificationManager.info(e.response.data.message, '', 2000)
         yield put(setWordsLoadingStatus(LoadingState.ERROR))
     }
 }
 
-export function* verifyWordsRequest({ id, payload }: VerifyWordsActionInterface): any {
+export function* updateWordsRequest({ id, page, payload }: UpdateWordsActionInterface): any {
+    try {
+        yield call(wordsApi.updateWords, id, payload)
+        const items = yield call(wordsApi.fetchWords, page)
+        yield put(setWords(items))
+        NotificationManager.success('Слова успешно изменены', '', 2000)
+    } catch (e: any) {
+        NotificationManager.info(e.response.data.message, '', 2000)
+        yield put(setWordsLoadingStatus(LoadingState.ERROR))
+    }
+}
+
+export function* verifyWordsRequest({ id, page, payload }: VerifyWordsActionInterface): any {
     try {
         yield call(wordsApi.verifyWords, id, payload)
-        NotificationManager.success('Слова успешно добавлены', '', 4000)
+        const items = yield call(wordsApi.fetchWords, page)
+        yield put(setWords(items))
+        NotificationManager.success('Слова успешно добавлены', '', 2000)
     } catch (e) {
         yield put(setWordsLoadingStatus(LoadingState.ERROR))
     }
@@ -64,6 +81,7 @@ export function* searchWordsRequest({ searchString, lang }: SearchWordsActionInt
 
 export function* wordsSaga() {
     yield takeLatest(WordsActionsType.FETCH_WORDS, fetchWordsRequest)
+    yield takeLatest(WordsActionsType.UPDATE_WORDS, updateWordsRequest)
     yield takeLatest(WordsActionsType.VERIFY_WORDS, verifyWordsRequest)
     yield takeLatest(WordsActionsType.ADD_WORDS, addWordsRequest)
     yield takeLatest(WordsActionsType.DELETE_WORDS, deleteWordsRequest)

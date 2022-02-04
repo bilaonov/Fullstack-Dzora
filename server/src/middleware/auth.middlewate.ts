@@ -1,19 +1,22 @@
 import jwt from 'jsonwebtoken'
 import config from 'config'
 
-export function authMiddleware(req: any, res: any, next: any) {
-    const token = req.header('x-auth-token')
-
-    if (!token) {
-        res.status(401).json({ message: 'No token' })
+function authMiddleware(req: any, res: any, next: any) {
+    if (req.method === 'OPTIONS') {
+        return next()
     }
 
     try {
+        const token = req.headers.authorization.split(' ')[1]
+        if (!token) {
+            return res.status(401).json({ message: 'Auth error' })
+        }
         const decoded = jwt.verify(token, config.get('jwtSecret'))
-
         req.user = decoded
         next()
-    } catch {
-        res.status(401).json({ msg: 'Token is not valid.' })
+    } catch (e) {
+        return res.status(401).json({ message: 'Auth errors' })
     }
 }
+
+export default authMiddleware

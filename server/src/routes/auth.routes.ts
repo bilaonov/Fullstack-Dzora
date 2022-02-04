@@ -5,20 +5,9 @@ import jwt from 'jsonwebtoken'
 import { check, validationResult } from 'express-validator'
 import { IUser } from '../@types'
 import config from 'config'
-import { authMiddleware } from '../middleware/auth.middlewate'
+import authMiddleware from '../middleware/auth.middlewate'
 
 const router = Router()
-
-router.get('/auth', authMiddleware, async (req: any, res: any) => {
-    try {
-        const user = await User.findById(req.user._id).select('-password')
-
-        res.json(user)
-    } catch(e) {
-        console.log(e)
-        res.send({ message: 'Server error' })
-    }
-})
 
 router.post(
     '/registration',
@@ -85,6 +74,24 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
             id: user.id,
             name: user.name,
             email: user.email,
+        })
+    } catch (e) {
+        console.log(e)
+        res.send({ message: 'Server error' })
+    }
+})
+
+router.get('/me', authMiddleware, async (req: Request, res: Response): Promise<void> => {
+    try {
+        //@ts-ignore
+        const user: any = await User.findOne({ _id: req.user.id })
+        const token = jwt.sign({ id: user.id }, config.get('jwtSecret'), { expiresIn: '1h' })
+        res.json({
+            token,
+            name: user.name,
+            id: user.id,
+            email: user.email,
+            avatar: user.avatar,
         })
     } catch (e) {
         console.log(e)

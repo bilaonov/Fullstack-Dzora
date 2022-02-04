@@ -10,7 +10,6 @@ import Searchimg from '../../assets/SearchIcon.png'
 import imgplaces from '../../assets/arrow.png'
 import image from '../../assets/image1.png'
 import image2 from '../../assets/image2.png'
-import image3 from '../../assets/105-digoriya-severnaya-osetiya 1.png'
 import Model from '../../scene/Model'
 import Button from '@mui/material/Button'
 
@@ -32,7 +31,7 @@ const Main = () => {
     }
 
     const placeholder = mediaQuery({
-        'min-768': `Найти слово на ${clickLang === true ? 'дигорском' : 'русском'}`,
+        'min-768': `Введите слово на ${clickLang === true ? 'дигорском' : 'русском'}`,
         'max-768': 'Поиск слова',
     })
 
@@ -82,7 +81,7 @@ const Main = () => {
                             <span>{clickLang !== true ? 'ДИГ' : 'РУС'}</span>
                         </div>
                     </form>
-                    <WordsSearch clickLang={clickLang} />
+                    <WordsSearch clickLang={clickLang} text={text} />
                     <Button
                         onClick={handleClickOpenWordsAdd}
                         variant="contained"
@@ -145,9 +144,6 @@ const Main = () => {
                         обучения кадров влечет за собой процесс внедрения и модернизации системы о
                     </p>
                 </div>
-                <h1 className="main__infoTitle4">ВИРТУАЛЬНЫЙ ТУР ПО ДИГОРИИ</h1>
-                <img className="main__infoImage2" src={image3} width={1000} height={650} alt="" />
-                <p className="main__infoText4">Видео взято с канала Виртуальные туры по Осетии</p>
             </div>
             <WordsAdd open={visibleModal === true} onClose={handleCloseModal} />
         </div>

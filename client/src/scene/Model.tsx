@@ -49,8 +49,6 @@ export default function Model() {
             100,
         )
         camera.position.z = 60
-
-        console.log(camera)
         const renderer = new THREE.WebGLRenderer()
         renderer.setPixelRatio(pixelRatio)
         renderer.setSize(elContent.offsetWidth, elContent.offsetHeight)
@@ -103,19 +101,20 @@ export default function Model() {
         let sampler = null
         const lines = []
         let linesMaterials = [
-            new THREE.LineBasicMaterial({ transparent: true, color: 0x125d98 }),
-            new THREE.LineBasicMaterial({ transparent: true, color: 0xcfd6de }),
+            new THREE.LineBasicMaterial({ transparent: true, color: '#ffffff' }),
+            new THREE.LineBasicMaterial({ transparent: true, color: '#e8f809' }),
+            new THREE.LineBasicMaterial({ transparent: true, color: '#ff0404' }),
         ]
         let galaxyColors = [
-            new THREE.Color('#f9fbf2').multiplyScalar(0.8),
-            new THREE.Color('#ffede1').multiplyScalar(0.8),
-            new THREE.Color('#05c7f2').multiplyScalar(0.8),
+            new THREE.Color('#ffffff').multiplyScalar(0.8),
+            new THREE.Color('#e8f809').multiplyScalar(0.8),
+            new THREE.Color('#ff0404').multiplyScalar(0.8),
         ]
         function dots() {
             sampler = new MeshSurfaceSampler(text).build()
 
-            for (let i = 0; i < 10; i++) {
-                const linesMesh = new THREE.Line(new THREE.BufferGeometry(), linesMaterials[i % 2])
+            for (let i = 0; i < 5; i++) {
+                const linesMesh = new THREE.Line(new THREE.BufferGeometry(), linesMaterials[i % 3])
                 linesMesh.coordinates = []
                 linesMesh.previous = null
                 lines.push(linesMesh)
@@ -242,7 +241,7 @@ export default function Model() {
         let _prev = 0
         function render(a) {
             requestAnimationFrame(render)
-
+            
             galaxyPoints.rotation.y += 0.0005
             group.position.x = -5.4
             group.position.y = -0.5

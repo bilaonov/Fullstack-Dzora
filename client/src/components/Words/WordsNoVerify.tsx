@@ -19,7 +19,6 @@ import Paper from '@mui/material/Paper'
 import SearchIcon from '@mui/icons-material/Search'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
-
 import Button from '@mui/material/Button'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -60,12 +59,20 @@ const WordsNoVerify = () => {
         const data = {
             verify: verif,
         }
-        dispatch(verifyWords(id, data))
+        dispatch(verifyWords(id, page, data))
+    }
+
+    const handlePage = (id: string) => {
+        dispatch(deleteWords(id, page))
     }
 
     useEffect(() => {
         dispatch(fetchWords(page))
     }, [dispatch, page])
+
+    if (data.length === 0) {
+        return <div id="textdata">Список не проверенных слов пуст.</div>
+    }
 
     return (
         <>
@@ -89,7 +96,7 @@ const WordsNoVerify = () => {
                                     <Button
                                         sx={{ mr: 2 }}
                                         size="small"
-                                        onClick={() => dispatch(deleteWords(item._id))}
+                                        onClick={() => handlePage(item._id)}
                                         variant="outlined"
                                         color="error"
                                     >

@@ -1,6 +1,6 @@
 import { LoadingState } from '../../../types'
 import { UserActions } from './actionCreators'
-import { UserActionType } from './types/actionTypes'
+import { UserActionsType } from './types/actionTypes'
 import { UserState } from './types/state'
 
 const initialUserState: UserState = {
@@ -11,23 +11,28 @@ const initialUserState: UserState = {
 
 const userReducer = (state = initialUserState, action: UserActions) => {
     switch (action.type) {
-        case UserActionType.SET_USER:
+        case UserActionsType.SET_USER:
             return {
                 ...state,
                 data: action.payload,
                 isAuth: true,
                 isLoading: LoadingState.SUCCESS,
             }
-        case UserActionType.AUTH_LOADING_STATUS:
+        case UserActionsType.SET_AUTH:
+            return {
+                ...state,
+            }
+        case UserActionsType.AUTH_LOADING_STATUS:
             return {
                 ...state,
                 isLoading: action.payload,
             }
-        case UserActionType.LOGOUT:
+        case UserActionsType.LOGOUT:
+            localStorage.removeItem('token')
             return {
                 ...state,
-                data: null,
-                isLoading: LoadingState.SUCCESS,
+                data: {},
+                isAuth: false,
             }
         default:
             return state
@@ -35,21 +40,3 @@ const userReducer = (state = initialUserState, action: UserActions) => {
 }
 
 export default userReducer
-// export const userReducer = produce((draft: Draft<UserState>, action: UserActions) => {
-//     switch (action.type) {
-//         case UserActionType.SET_USER:
-//             draft.data = action.payload
-//             draft.isAuth = true
-//             break
-//         case UserActionType.AUTH_LOADING_STATUS:
-//             draft.status = action.payload
-//             break
-//         case UserActionType.LOGOUT:
-//             draft.status = LoadingState.SUCCESS
-//             draft.data = null
-//             draft.isAuth = false
-//             break
-//         default:
-//             break
-//     }
-// }, initialUserState)

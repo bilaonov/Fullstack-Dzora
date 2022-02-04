@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../../App.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteWords, fetchWords } from '../../store/ducks/words/actionCreators'
+import { useNavigate } from 'react-router-dom'
 import {
     currentPageWords,
     lastPageWords,
@@ -42,16 +43,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }))
 
 const WordsVerify: React.FC = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const [page, setPage] = useState<number>(1)
-
     const data = useSelector(selectWordsVerify)
     const last_page = useSelector(lastPageWords)
     const current_page = useSelector(currentPageWords)
 
     const handleChange = (event: any, value: any) => {
         setPage(value)
+    }
+
+    const onEditClick = (id: string) => navigate(`/list/${id}`)
+
+    const handlePage = (id: string) => {
+        dispatch(deleteWords(id, page))
     }
 
     useEffect(() => {
@@ -80,13 +86,17 @@ const WordsVerify: React.FC = () => {
                                     <Button
                                         sx={{ mr: 2 }}
                                         size="small"
-                                        onClick={() => dispatch(deleteWords(item._id))}
+                                        onClick={() => handlePage(item._id)}
                                         variant="outlined"
                                         color="error"
                                     >
                                         Удалить
                                     </Button>
-                                    <Button size="small" variant="contained" color="success">
+                                    <Button
+                                        sx={{ mr: 2 }}
+                                        size="small"
+                                        onClick={() => onEditClick(item._id)}
+                                    >
                                         Редактировать
                                     </Button>
                                 </StyledTableCell>

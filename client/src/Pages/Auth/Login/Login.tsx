@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from 'react'
 import '../Auth.scss'
 import Box from '@mui/material/Box'
@@ -6,7 +5,7 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import { ModalBlock } from '../../../components/ModalBlock/ModalBlock'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { LoginData } from '../../../store/ducks/user/types/actionTypes'
+import { LoginData } from '../../../store/ducks/user/types/state'
 import { loginSchema } from '../../../services/helpers/validation'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
@@ -30,6 +29,7 @@ const Login: React.FC<LoginModalProps> = ({ open, onClose }) => {
 
     const onSubmit = (data: LoginData) => {
         dispatch(login(data))
+
         onClose()
     }
 
@@ -60,13 +60,7 @@ const Login: React.FC<LoginModalProps> = ({ open, onClose }) => {
                         error={!!errors.password}
                     />
 
-                    <Button
-                        id="btn_add"
-                        type="submit"
-                        
-                        variant="contained"
-                        color="success"
-                    >
+                    <Button id="btn_add" type="submit" variant="contained" color="success">
                         Войти
                     </Button>
                 </Box>

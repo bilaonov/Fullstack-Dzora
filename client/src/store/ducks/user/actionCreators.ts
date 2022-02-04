@@ -1,42 +1,41 @@
 import { LoadingState } from '../../../types'
 import {
-    LoginData,
     LoginSuccessActionInterface,
     LogoutActionInterface,
-    RegistrData,
     SetRegistrActionInterface,
     SetUserActionInterface,
-    UserActionType,
+    UserActionsType,
     AuthLoadingStatusActionInterface,
     SetAuthActionInterface,
+    
 } from './types/actionTypes'
-import { User } from './types/state'
+import { LoginData, RegistrData, User } from './types/state'
 
 export const login = (payload: LoginData): LoginSuccessActionInterface => ({
-    type: UserActionType.LOGIN_SOCCESS,
+    type: UserActionsType.LOGIN_SOCCESS,
     payload,
 })
 
 export const setUser = (payload: User | null): SetUserActionInterface => ({
-    type: UserActionType.SET_USER,
+    type: UserActionsType.SET_USER,
     payload,
 })
 
 export const setAuth = (): SetAuthActionInterface => ({
-    type: UserActionType.SET_AUTH,
+    type: UserActionsType.SET_AUTH,
 })
 
 export const setRegistr = (payload: RegistrData): SetRegistrActionInterface => ({
-    type: UserActionType.REGISTR_SUCCESS,
+    type: UserActionsType.REGISTR_SUCCESS,
     payload,
 })
 
 export const logout = (): LogoutActionInterface => ({
-    type: UserActionType.LOGOUT,
+    type: UserActionsType.LOGOUT,
 })
 
 export const setUserLoadingStatus = (payload: LoadingState): AuthLoadingStatusActionInterface => ({
-    type: UserActionType.AUTH_LOADING_STATUS,
+    type: UserActionsType.AUTH_LOADING_STATUS,
     payload,
 })
 

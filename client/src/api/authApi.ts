@@ -1,22 +1,22 @@
-import { axios } from '../core/axios'
-import { LoginData, RegistrData } from '../store/ducks/user/types/actionTypes'
-import { User } from '../store/ducks/user/types/state'
+import axios from 'axios'
+import { LoginData, RegistrData } from '../store/ducks/user/types/state'
 
-interface Response<T> {
+interface ResponseApi {
+    token: string
     status: string
-    data: T
+    data: any
 }
 
 export const AuthApi = {
-    async login(formData: LoginData): Promise<Response<User>> {
-        const { data } = await axios.post<Response<User>>('/api/auth/login/', {
+    async login(formData: LoginData): Promise<ResponseApi> {
+        const { data } = await axios.post<ResponseApi>('/api/auth/login/', {
             email: formData.email,
             password: formData.password,
         })
         return data
     },
-    async register(formData: RegistrData): Promise<Response<User>> {
-        const { data } = await axios.post<Response<User>>('/api/auth/registration/', {
+    async register(formData: RegistrData): Promise<ResponseApi> {
+        const { data } = await axios.post<ResponseApi>('/api/auth/registration/', {
             email: formData.email,
             name: formData.name,
             password: formData.password,
@@ -25,13 +25,12 @@ export const AuthApi = {
         return data
     },
 
-    async setAuth(token: string): Promise<User> {
-        const { data } = await axios.get<Response<User>>('/auth/me', {
-            headers: {
-                token: token,
-            },
+    async getMe(): Promise<ResponseApi> {
+        const { data } = await axios.get<ResponseApi>('/api/auth/me', {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         })
-        return data.data
+        localStorage.setItem('token', data.token)
+        return data
     },
 }
 

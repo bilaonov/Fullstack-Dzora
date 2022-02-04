@@ -1,3 +1,4 @@
+//@ts-nocheck
 function checkMedia(px: string, size: string) {
     if (!window.matchMedia) {
         return false
@@ -7,7 +8,7 @@ function checkMedia(px: string, size: string) {
     }
     return false
 }
-//@ts-ignore
+
 const mediaQuery = (queries): any => {
     let result
     const isOK = Object.keys(queries).some((s) => {
@@ -22,7 +23,7 @@ const mediaQuery = (queries): any => {
     }
     return result
 }
-//@ts-ignore
+
 global.window.queries = mediaQuery
 
 export default mediaQuery

@@ -10,12 +10,12 @@ router.post('/words', async (req: Request, res: Response): Promise<void> => {
         const uniqWord = await Word.findOne({ word })
         const uniqTranlate = await Word.findOne({ translate })
 
-        if (uniqWord) {
+        if (uniqWord && uniqTranlate) {
             res.status(400).json({
                 message: `Извините но слово ${word} уже существует в нашей базе `,
             })
         }
-        if (uniqTranlate) {
+        if (uniqTranlate && uniqWord) {
             res.status(400).json({
                 message: `Извините но слово ${translate} уже существует в нашей базе `,
             })

@@ -31,17 +31,19 @@ export const ModalBlock: React.FC<ModalBlockProps> = ({
             maxWidth={'sm'}
             open={visible}
             onClose={onClose}
-            className="dialog"
-            aria-labelledby="form-dialog-title"
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
         >
             <DialogTitle>
                 <div className="dialog__header">
                     <span>{title}</span>
-                    <IconButton onClick={onClose}  aria-label="close">
+                    <IconButton onClick={onClose} aria-label="close">
                         <CloseIcon style={{ fontSize: 20 }} />
                     </IconButton>
                 </div>
-                <DialogContent dividers className='dialog__content'>{children}</DialogContent>
+                <DialogContent dividers className="dialog__content">
+                    {children}
+                </DialogContent>
             </DialogTitle>
         </Dialog>
     )

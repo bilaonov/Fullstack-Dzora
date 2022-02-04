@@ -9,18 +9,13 @@ import TextField from '@mui/material/TextField'
 import { registerSchema } from '../../../services/helpers/validation'
 import { useDispatch } from 'react-redux'
 import { setRegistr } from '../../../store/ducks/user/actionCreators'
+import { RegistrData } from '../../../store/ducks/user/types/state'
 
 interface RegisterModalProps {
     open: boolean
     onClose: () => void
 }
 
-interface IFormInput {
-    name: string
-    email: string
-    password: string
-    password2: string
-}
 
 const Register: React.FC<RegisterModalProps> = ({ open, onClose }) => {
     const dispatch = useDispatch()
@@ -29,11 +24,11 @@ const Register: React.FC<RegisterModalProps> = ({ open, onClose }) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<IFormInput>({
+    } = useForm<RegistrData>({
         resolver: yupResolver(registerSchema),
     })
 
-    const onSubmit = (data: IFormInput) => {
+    const onSubmit = (data: RegistrData) => {
         dispatch(setRegistr(data))
         onClose()
     }

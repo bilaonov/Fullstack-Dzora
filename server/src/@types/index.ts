@@ -1,8 +1,11 @@
 import { Document, ObjectId } from 'mongoose'
 
 export interface IUser extends Document {
+    _id: string
+    name: string
     email: string
     password: string
+    avatar: string
 }
 
 export interface IWord extends Document {

@@ -18,3 +18,8 @@ export interface WordsState {
     last_page: number
     isLoading: LoadingState
 }
+
+export interface WordsData {
+    word: string 
+    translate: string
+}
