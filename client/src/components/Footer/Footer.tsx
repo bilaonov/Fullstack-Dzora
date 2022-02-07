@@ -10,13 +10,15 @@ const Footer = () => {
                 <Link to={'/'}>
                     <img src={instagram} alt="" /> INSTAGRAM
                 </Link>
-                <Link to={'/'}>
+                <a href={'https://t.me/dzoraru'} target="_blank" rel="noreferrer">
                     TELEGRAM
                     <img src={telegram} alt="" />
-                </Link>
+                </a>
             </div>
             <div className="footer__info">
-                <p>ПО ВСЕМ ВОПРОСАМ ПИСАТЬ НА ПОЧТУ BILAONOFF@MAIL.RU</p>
+                <p>
+                    ПО ВСЕМ ВОПРОСАМ ПИСАТЬ НА ПОЧТУ BILAONOFF@MAIL.RU
+                </p>
                 <p>
                     © 2021 <br />
                     Bilaonoff

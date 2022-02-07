@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Auth.scss'
+import '../../../App.scss'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -35,36 +35,44 @@ const Login: React.FC<LoginModalProps> = ({ open, onClose }) => {
 
     return (
         <ModalBlock visible={open} onClose={onClose} title="Войти в аккаунт">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Box>
-                    <TextField
-                        fullWidth
-                        id="standard-textarea"
-                        label="Введите почту"
-                        placeholder="Введите почту"
-                        variant="standard"
-                        {...register('email')}
-                        helperText={errors.email ? errors.email.message : ''}
-                        error={!!errors.email}
-                    />
-                    <TextField
-                        sx={{ mt: 2 }}
-                        fullWidth
-                        id="standard-textarea"
-                        label="Введите пароль"
-                        placeholder="Введите пароль"
-                        variant="standard"
-                        type="password"
-                        {...register('password')}
-                        helperText={errors.password ? errors.password.message : ''}
-                        error={!!errors.password}
-                    />
+            <Box
+                sx={{
+                    width: 500,
+                    maxWidth: '100%',
+                }}
+                onSubmit={handleSubmit(onSubmit)}
+                noValidate
+                autoComplete="off"
+                component="form"
+                className="form"
+            >
+                <TextField
+                    fullWidth
+                    id="standard-textarea"
+                    label="Введите почту"
+                    placeholder="Введите почту"
+                    variant="filled"
+                    {...register('email')}
+                    helperText={errors.email ? errors.email.message : ''}
+                    error={!!errors.email}
+                />
+                <TextField
+                    sx={{ mt: 2 }}
+                    fullWidth
+                    id="standard-textarea"
+                    label="Введите пароль"
+                    placeholder="Введите пароль"
+                    variant="filled"
+                    type="password"
+                    {...register('password')}
+                    helperText={errors.password ? errors.password.message : ''}
+                    error={!!errors.password}
+                />
 
-                    <Button id="btn_add" type="submit" variant="contained" color="success">
-                        Войти
-                    </Button>
-                </Box>
-            </form>
+                <Button type="submit" variant="contained" color="success">
+                    Войти
+                </Button>
+            </Box>
         </ModalBlock>
     )
 }

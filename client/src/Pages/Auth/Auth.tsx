@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react'
-
 import Button from '@mui/material/Button'
-
 import { useState } from 'react'
-
 import Login from './Login/Login'
 
 const Auth: React.FC = () => {

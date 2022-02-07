@@ -18,7 +18,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 500,
+    maxWidth: '90%',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -35,7 +36,7 @@ const WordsEdit: React.FC = () => {
     const handleClose = () => setOpen(false)
 
     if (!open) {
-        navigate(`/list`)
+        navigate('/list')
     }
 
     const dispatch = useDispatch()
@@ -50,7 +51,7 @@ const WordsEdit: React.FC = () => {
     const onSubmit = (data: WordsData) => {
         dispatch(updateWords(id, page, data))
         setOpen(false)
-        navigate(`/list`)
+        navigate('/list')
     }
 
     return (
@@ -60,8 +61,9 @@ const WordsEdit: React.FC = () => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                className="dialog"
             >
-                <Box sx={style} component="form" onSubmit={handleSubmit(onSubmit)}>
+                <Box sx={style} component="form" className="form" onSubmit={handleSubmit(onSubmit)}>
                     <TextField
                         {...register('word')}
                         helperText={errors.word ? errors.word.message : ''}
@@ -70,7 +72,7 @@ const WordsEdit: React.FC = () => {
                         fullWidth
                         id="standard-textarea"
                         type="text"
-                        variant="standard"
+                        variant="filled"
                         label="Редактировать дигорское слово"
                     />
                     <TextField
@@ -82,7 +84,7 @@ const WordsEdit: React.FC = () => {
                         id="standard-textarea"
                         defaultValue={data?.translate || ''}
                         label="Редактировать русское слово"
-                        variant="standard"
+                        variant="filled"
                         type="text"
                     />
                     <Button id="btn_add" type="submit" variant="contained" color="success">

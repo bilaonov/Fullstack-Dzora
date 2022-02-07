@@ -9,38 +9,13 @@ import {
     selectWordsVerify,
 } from '../../store/ducks/words/selectors'
 
-import { styled } from '@mui/material/styles'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell, { tableCellClasses } from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
 import SearchIcon from '@mui/icons-material/Search'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button'
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-        fontSize: 14,
-    },
-}))
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    '&:last-child td, &:last-child th': {
-        border: 0,
-    },
-}))
+import DeleteIcon from '@mui/icons-material/Delete'
+import IconButton from '@mui/material/IconButton'
+import Tooltip from '@mui/material/Tooltip'
+import EditIcon from '@mui/icons-material/Edit'
 
 const WordsVerify: React.FC = () => {
     const navigate = useNavigate()
@@ -66,44 +41,38 @@ const WordsVerify: React.FC = () => {
 
     return (
         <>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 400, maxWidth: 900 }} aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            <StyledTableCell align="left">Слова на дигорском</StyledTableCell>
-                            <StyledTableCell align="center">Слова на русском</StyledTableCell>
-                            <StyledTableCell align="right">
+            <div>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th align="left">Слова на дигорском</th>
+                            <th align="center">Слова на русском</th>
+                            <th align="right">
                                 <SearchIcon />
-                            </StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {data.map((item: any) => (
-                            <StyledTableRow key={item._id}>
-                                <StyledTableCell align="left">{item.word}</StyledTableCell>
-                                <StyledTableCell align="center">{item.translate}</StyledTableCell>
-                                <StyledTableCell align="right">
-                                    <Button
-                                        sx={{ mr: 2 }}
-                                        size="small"
-                                        onClick={() => handlePage(item._id)}
-                                        variant="outlined"
-                                        color="error"
-                                    >
-                                        Удалить
-                                    </Button>
-                                    <Button
-                                        sx={{ mr: 2 }}
-                                        size="small"
-                                        onClick={() => onEditClick(item._id)}
-                                    >
-                                        Редактировать
-                                    </Button>
-                                </StyledTableCell>
-                            </StyledTableRow>
+                            <tr key={item._id}>
+                                <td align="left">{item.word}</td>
+                                <td align="center">{item.translate}</td>
+                                <td align="right">
+                                    <Tooltip title="Удалить">
+                                        <IconButton onClick={() => handlePage(item._id)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Редактировать">
+                                        <IconButton onClick={() => onEditClick(item._id)}>
+                                            <EditIcon />
+                                        </IconButton>
+                                    </Tooltip>
+                                </td>
+                            </tr>
                         ))}
-                    </TableBody>
-                </Table>
+                    </tbody>
+                </table>
                 <Stack spacing={2} sx={{ mt: 3, mb: 2 }}>
                     <Pagination
                         onChange={handleChange}
@@ -112,7 +81,7 @@ const WordsVerify: React.FC = () => {
                         color="primary"
                     />
                 </Stack>
-            </TableContainer>
+            </div>
         </>
     )
 }

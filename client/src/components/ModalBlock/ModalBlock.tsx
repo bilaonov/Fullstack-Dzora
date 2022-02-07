@@ -30,11 +30,12 @@ export const ModalBlock: React.FC<ModalBlockProps> = ({
             scroll={'body'}
             maxWidth={'sm'}
             open={visible}
+            className="dialog"
             onClose={onClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
-            <DialogTitle>
+            <DialogTitle className='dialog__title'>
                 <div className="dialog__header">
                     <span>{title}</span>
                     <IconButton onClick={onClose} aria-label="close">

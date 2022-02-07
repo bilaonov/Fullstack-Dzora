@@ -1,7 +1,6 @@
 import React from 'react'
 import { ModalBlock } from '../../../components/ModalBlock/ModalBlock'
 import { useForm } from 'react-hook-form'
-
 import { yupResolver } from '@hookform/resolvers/yup'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'

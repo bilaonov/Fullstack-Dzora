@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../App.scss'
 import { addWords } from '../../store/ducks/words/actionCreators'
 import { useDispatch } from 'react-redux'
 import { ModalBlock } from '../ModalBlock/ModalBlock'
@@ -34,27 +35,37 @@ const WordsAdd: React.FC<AddWordsProps> = ({ open, onClose }) => {
 
     return (
         <ModalBlock visible={open} onClose={onClose} title="Добавить слово">
-            <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+            <Box
+                sx={{
+                    width: 500,
+                    maxWidth: '100%',
+                }}
+                noValidate
+                autoComplete="off"
+                component="form"
+                className="form"
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <TextField
                     fullWidth
-                    id="standard-textarea"
                     label="Введите слова на дигорском"
                     {...register('word')}
                     helperText={errors.word ? errors.word.message : ''}
                     error={!!errors.word}
-                    variant="standard"
+                    variant="filled"
                 />
                 <TextField
                     sx={{ mt: 2 }}
+                    fullWidth
+                    id="standard-textarea"
+                    placeholder="Введите слова на русском"
+                    variant="filled"
                     {...register('translate')}
                     helperText={errors.translate ? errors.translate.message : ''}
                     error={!!errors.translate}
-                    fullWidth
-                    id="standard-textarea"
                     label="Введите слова на русском"
-                    variant="standard"
                 />
-                <Button type="submit" id="btn_add" variant="contained" color="success">
+                <Button type="submit" variant="contained" color="success">
                     Добавить
                 </Button>
             </Box>
