@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -45,14 +45,18 @@ const WordsEdit: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
+    } = useForm<WordsData>({
         resolver: yupResolver(addWordsSchema),
     })
-    const onSubmit = (data: WordsData) => {
-        dispatch(updateWords(id, page, data))
-        setOpen(false)
-        navigate('/list')
-    }
+
+    const onSubmit = useCallback(
+        (data: WordsData) => {
+            dispatch(updateWords(id, page, data))
+            setOpen(false)
+            navigate('/list')
+        },
+        [dispatch, navigate, id, page],
+    )
 
     return (
         <div>

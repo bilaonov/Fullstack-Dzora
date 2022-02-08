@@ -1,5 +1,6 @@
 import * as yup from 'yup'
 
+
 export const loginSchema = yup.object().shape({
     email: yup.string().email('Некоректный email').required('Введите почту'),
     password: yup.string().min(6, '​Минимальная длина пароля 6 символов').required(),

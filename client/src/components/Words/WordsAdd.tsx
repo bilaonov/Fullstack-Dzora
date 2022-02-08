@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import '../../App.scss'
 import { addWords } from '../../store/ducks/words/actionCreators'
 import { useDispatch } from 'react-redux'
@@ -25,13 +25,17 @@ const WordsAdd: React.FC<AddWordsProps> = ({ open, onClose }) => {
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm({
+    } = useForm<WordsData>({
         resolver: yupResolver(addWordsSchema),
     })
-    const onSubmit = (data: WordsData) => {
-        dispatch(addWords(data))
-        reset({ word: '', translate: '' })
-    }
+
+    const onSubmit = useCallback(
+        (data: WordsData) => {
+            dispatch(addWords(data))
+            reset({ word: '', translate: '' })
+        },
+        [dispatch, reset],
+    )
 
     return (
         <ModalBlock visible={open} onClose={onClose} title="Добавить слово">

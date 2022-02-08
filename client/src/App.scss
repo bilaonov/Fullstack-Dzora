@@ -168,7 +168,7 @@ body {
             }
         }
         &__blockReverse {
-            justify-content: end;
+            justify-content: flex-end;
             align-items: center;
             cursor: pointer;
             display: flex;
@@ -599,7 +599,7 @@ body {
             line-height: 15px;
             text-align: center;
             display: flex;
-            align-items: start;
+            align-items: flex-start;
         }
 
         &__infoText3 {
@@ -611,7 +611,7 @@ body {
             line-height: 15px;
             text-align: center;
             display: flex;
-            align-items: start;
+            align-items: flex-start;
         }
 
         &__infoTitle {
@@ -953,7 +953,7 @@ body {
             display: flex;
             width: 100%;
             height: auto;
-            align-items: start;
+            align-items: flex-start;
             padding: 0;
             margin: 0;
         }
@@ -982,7 +982,7 @@ body {
             line-height: 15px;
             text-align: center;
             display: flex;
-            align-items: start;
+            align-items: flex-start;
         }
 
         &__infoText3 {
@@ -994,7 +994,7 @@ body {
             line-height: 15px;
             text-align: center;
             display: flex;
-            align-items: start;
+            align-items: flex-start;
         }
 
         &__infoTitle {

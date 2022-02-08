@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import '../../../App.scss'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -23,15 +23,18 @@ const Login: React.FC<LoginModalProps> = ({ open, onClose }) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
+    } = useForm<LoginData>({
         resolver: yupResolver(loginSchema),
     })
 
-    const onSubmit = (data: LoginData) => {
-        dispatch(login(data))
+    const onSubmit = useCallback(
+        (data: LoginData) => {
+            dispatch(login(data))
 
-        onClose()
-    }
+            onClose()
+        },
+        [dispatch, onClose],
+    )
 
     return (
         <ModalBlock visible={open} onClose={onClose} title="Войти в аккаунт">
