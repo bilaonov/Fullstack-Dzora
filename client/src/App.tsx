@@ -8,8 +8,8 @@ import { Suspense } from 'react'
 import Home from './Pages/Home/Home'
 import { setAuth } from './store/ducks/user/actionCreators'
 import { fetchWords } from './store/ducks/words/actionCreators'
-
 import WordsEdit from './components/Words/WordsEdit'
+
 
 const App: React.FC = () => {
     const dispatch = useDispatch()
@@ -20,8 +20,9 @@ const App: React.FC = () => {
     }, [dispatch])
 
     return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<h1>Loading modal...</h1>}>
             <div className="container">
+
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />

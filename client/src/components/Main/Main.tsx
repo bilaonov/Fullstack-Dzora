@@ -53,7 +53,6 @@ const Main = () => {
                 </h1>
             </div>
             <div className="main__search search">
-                <Model />
                 <div className="search__item">
                     <p>D3OPA</p>
                     <form className="search__form">
@@ -88,6 +87,9 @@ const Main = () => {
                         Добавить слово
                     </Button>
                 </div>
+                <div className="search__model">
+                    <Model />
+                </div>
             </div>
             <div className="main__info">
                 <h1 className="main__infoTitle">О ПРОЕКТЕ</h1>
@@ -111,7 +113,6 @@ const Main = () => {
                     или вы можете помочь проекту и добавить Дигорские слова в словарь с переводом
                     заранее спасибо!
                 </p>
-
             </div>
             <WordsAdd open={visibleModal === true} onClose={handleCloseModal} />
         </div>

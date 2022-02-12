@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from 'react'
 import '../../App.scss'
 import DialogTitle from '@material-ui/core/DialogTitle'

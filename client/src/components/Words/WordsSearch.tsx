@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { searchWordsItems } from '../../store/ducks/words/selectors'
@@ -10,7 +9,7 @@ interface Props {
 }
 
 const WordsSearch: React.FC<Props> = ({ clickLang, text }) => {
-    const items = useSelector(searchWordsItems)
+    const items: any = useSelector(searchWordsItems)
 
     return (
         <>
