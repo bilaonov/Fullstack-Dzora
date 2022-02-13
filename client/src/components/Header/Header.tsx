@@ -13,7 +13,7 @@ const Header = () => {
         <div className="header">
             <div className="header__item">
                 <div className="header__logoText">
-                    <Link to="/">D3OPA</Link>
+                    <Link to="/">D3OPAH</Link>
                 </div>
                 {auth && (
                     <div className="header__list">

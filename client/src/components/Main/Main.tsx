@@ -29,8 +29,8 @@ const Main = () => {
     }
 
     const placeholder = mediaQuery({
-        'min-768': `Введите слово на ${clickLang === true ? 'дигорском' : 'русском'}`,
-        'max-768': 'Поиск слова',
+        'min-500': `Введите слово на ${clickLang === true ? 'дигорском' : 'русском'}`,
+        'max-500': 'Введите слово',
     })
 
     const dispatch = useDispatch()
@@ -54,7 +54,7 @@ const Main = () => {
             </div>
             <div className="main__search search">
                 <div className="search__item">
-                    <p>D3OPA</p>
+                    <p>D3OPAH</p>
                     <form className="search__form">
                         <div className="search__block">
                             <img
@@ -82,7 +82,7 @@ const Main = () => {
                     <Button
                         onClick={handleClickOpenWordsAdd}
                         variant="contained"
-                        className="addWords"
+                        className="search__addWords"
                     >
                         Добавить слово
                     </Button>
@@ -94,7 +94,7 @@ const Main = () => {
             <div className="main__info">
                 <h1 className="main__infoTitle">О ПРОЕКТЕ</h1>
                 <p className="main__infoText">
-                    DZORA.RU Современный сайт c новейшими технологиями и быстротой
+                    DZORAN.RU Современный сайт c новейшими технологиями и быстротой
                     <br />
                     <br />
                     Словари онлайн – это один из самых популярных и доступных к использованию

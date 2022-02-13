@@ -6,7 +6,7 @@ import wordRouter from './routes/words.routes'
 import searchRouter from './routes/search.routes'
 
 const app = express()
-const PORT = config.get('port') || 5000
+const PORT = config.get('port') || 80
 
 app.use(express.json())
 app.use('/api/auth/', authRouter)

@@ -23,7 +23,7 @@ const WordsSearch: React.FC<Props> = ({ clickLang, text }) => {
                                 </div>
                             ) : (
                                 <div className="results__text">
-                                    {item.word} - {item.translate}
+                                    {item.translate} - {item.word}
                                 </div>
                             )}
                         </div>
