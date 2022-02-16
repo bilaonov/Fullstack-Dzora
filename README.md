@@ -54,6 +54,7 @@ Install server:
 Create the build:
 
 ```
+cd client
 npm run build
 ```
  
