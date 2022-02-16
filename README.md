@@ -2,12 +2,12 @@
 
 <img src="https://downloader.disk.yandex.ru/preview/c2957a9a022dafd4de6305209212e25f308270077835e46cf23f58d53227ea6b/620d1edf/jXld1CO38pmJ7fPtfdmhrgHn21r0bM-e41Bx-o2WtA_fe_BvVUZELyR79O11rnOe0nhDRtyJJtrYefrC4HlSEQ%3D%3D?uid=0&filename=Screenshot_1.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=0&tknv=v2&size=2048x2048"/>
 
-Deploy [Dzoran.ru](http://dzoran.ru)
+Deploy  [Dzoran.ru](http://dzoran.ru)
 
 ## Intro
 
 I started working on this app a while ago when I was still learning technologies used in this project, so please be aware that
-the codebase (and the whole app in general) isn't perfect and there is still room for improvement, even though I've updated the code multiple times over the past years.
+the codebase (and the whole app in general) isn't perfect and there is still room for improvement, even though I've updated the code multiple times over the past months.
 
 So, consider this as a learning example or just a showcase rather than a production-quality code.
 
@@ -39,22 +39,37 @@ Install client:
 
 ```
 1)cd client 
-2)npm install
-3)npm run start
+```
+
+```
+2)npm install 
+```
+
+```
+3)npm run start 
 ```
 
 Install server:
 
 ```
-1)cd server 
+1)cd server
+```
+
+```
 2)npm install 
-3)npm run start
+```
+
+```
+3)npm run start 
 ```
 
 Create the build:
 
 ```
-cd client
+1)cd client 
+```
+
+```
 npm run build
 ```
  
