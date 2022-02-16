@@ -35,7 +35,7 @@ sorry for my English
  
 ## Installation
 
-Install client:
+Install and starting client:
 
 ```
 1)cd client 
@@ -49,7 +49,7 @@ Install client:
 3)npm run start 
 ```
 
-Install server:
+Install and starting server:
 
 ```
 1)cd server
