@@ -33,3 +33,23 @@ sorry for my English
   <a href="https://www.mongodb.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/> </a>
  </p>
  
+## Installation
+
+Install:
+
+```
+npm install
+```
+
+Compile the code for development and start a local server:
+
+```
+npm start
+```
+
+Create the build:
+
+```
+npm run build
+```
+ 
