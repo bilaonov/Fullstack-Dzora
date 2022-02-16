@@ -35,16 +35,20 @@ sorry for my English
  
 ## Installation
 
-Install:
+Install client:
 
 ```
-npm install
+1)cd client 
+2)npm install
+3)npm run start
 ```
 
-Compile the code for development and start a local server:
+Install server:
 
 ```
-npm start
+1)cd server 
+2)npm install 
+3)npm run start
 ```
 
 Create the build:
